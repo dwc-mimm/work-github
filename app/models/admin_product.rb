@@ -1,0 +1,2 @@
+class AdminProduct < ApplicationRecord
+end
