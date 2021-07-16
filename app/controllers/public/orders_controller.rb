@@ -18,4 +18,8 @@ class Public::OrdersController < ApplicationController
  def show
  end
  
+ def order_params
+  params.require(:order).permit(:postage, :payment, :payment_method, :name, :postcode, :address, :order_status)
+ end
+ 
 end
