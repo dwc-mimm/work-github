@@ -8,4 +8,7 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
   end
 
+  namespace :admin do
+    resources :order_products, only: [:update]
+  end
 end
