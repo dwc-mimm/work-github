@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :products, only: [:index, :show]
+    resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   end
 
 
