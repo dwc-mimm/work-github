@@ -6,6 +6,7 @@ one:
   name: MyString
   description: MyText
   tax_excluded_price: 1
+
   sale_status: false
 
 two:
