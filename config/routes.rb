@@ -19,6 +19,11 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :products, only: [:index, :show]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
+    resources :carts, only: [:index, :create, :update, :destroy] do
+      collection do
+        delete '/' => 'carts#destroy_all'
+      end
+    end
   end
 
   namespace :admin do
