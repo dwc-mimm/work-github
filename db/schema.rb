@@ -9,9 +9,19 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-
 ActiveRecord::Schema.define(version: 2021_07_15_134322) do
+
+  create_table "admin_products", force: :cascade do |t|
+    t.integer  "genre_id",          null: false
+    t.string   "image_id",          null: false
+    t.string   "name",              null: false
+    t.text     "description",       null: false
+    t.integer  "tax_exclued_price", null: false
+    t.boolean  "sale_status",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
 
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -55,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_134322) do
     t.boolean "sale_status", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
   end
 
 end
