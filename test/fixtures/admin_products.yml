@@ -5,7 +5,8 @@ one:
   image_id: MyString
   name: MyString
   description: MyText
-  tax_exclued_price: 1
+  tax_excluded_price: 1
+
   sale_status: false
 
 two:
@@ -13,5 +14,5 @@ two:
   image_id: MyString
   name: MyString
   description: MyText
-  tax_exclued_price: 1
+  tax_excluded_price: 1
   sale_status: false

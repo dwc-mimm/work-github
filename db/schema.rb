@@ -9,6 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
+
 ActiveRecord::Schema.define(version: 20210716105900) do
 
   create_table "admins", force: :cascade do |t|
@@ -34,7 +35,6 @@ ActiveRecord::Schema.define(version: 20210716105900) do
     t.integer  "order_status",   null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-
 
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
