@@ -11,7 +11,8 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 2021_07_16_120359) do
+ActiveRecord::Schema.define(version: 2021_07_16_122554) do
+
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -52,6 +53,13 @@ ActiveRecord::Schema.define(version: 2021_07_16_120359) do
     t.string "name"
     t.string "postcode"
     t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
