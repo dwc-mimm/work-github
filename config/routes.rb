@@ -21,5 +21,9 @@ Rails.application.routes.draw do
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
   end
 
+  namespace :admin do
+    resources :order_products, only: [:update]
+  end
+
 
 end
