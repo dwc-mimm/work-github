@@ -1,11 +1,12 @@
 
 <%#  ヘッダー部分テンプレート挿入%>
+<%# CSSでの装飾は後ほど進めていく %>
 
-<h3 class="banner">新規会員登録</h3>
 
 <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="contents-box">
+    <h3 class="banner">新規会員登録</h3>
     <div class="field">
       <%= f.label :name, "名前" %>
       <div class="field-box">

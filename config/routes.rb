@@ -11,11 +11,13 @@ Rails.application.routes.draw do
 
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
+  
 
   scope module: :public do
     resources :products, only: [:index, :show]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-    resources :carts, only: [:index, :create, :update, :destroy] do
+    resources :carts, only: [:index, :create, :update, :destroy] 
+    resources :customers, only: [:show] do
       collection do
         delete '/' => 'carts#destroy_all'
       end
