@@ -9,7 +9,7 @@
             <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
             <li class="nav-item">
-              <%= link_to "About", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%= link_to "マイページ", user_path(current_user.id), class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
               <%= link_to '商品一覧', new_post_image_path, class: 'nav-link text-dark' %>
@@ -17,13 +17,21 @@
             <li class="nav-item">
               <%= link_to 'カート', user_path(current_user.id), class: 'nav-link text-dark' %>
             </li>
-            
+            <li class="nav-item">
+              <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+            </li>
             <% else %>
             <li class="nav-item">
-              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+              <%= link_to "About", user_path(current_user.id), class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+              <%= link_to '商品一覧', new_post_image_path, class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '新規登録', user_path(current_user.id), class: 'nav-link text-dark' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'ログイン', destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
             <% end %>
             </ul>
