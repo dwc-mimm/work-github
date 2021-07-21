@@ -1,15 +1,18 @@
 class Public::ProductsController < ApplicationController
 
   def top
+    @products = Product.all.order
   end
 
   def about
   end
 
   def index
+    @products = Product.where(sale_status: true).page(params[:page]).per(8)
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   private
