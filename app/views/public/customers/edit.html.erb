@@ -1,1 +1,41 @@
-<h1>編集ページ</h1>
+<%= render 'layouts/header' %>
+
+<div class="inner">
+    <h4 class="banner">会員情報編集</h4>
+    <%= form_with model:@customer, local:true do |f| %>
+    
+    <table class="table">
+          <tr class="label">
+              <th>氏名</th>
+              <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"山田"%></td>
+              <td><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"花子"%></td>
+          </tr>
+          </br>
+          <tr class="label">
+              <th>フリガナ</th>
+              <td><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"ヤマダ"%></td>
+              <td><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"ハナコ"%></td>
+          </tr>
+          <tr class="label">
+              <th>郵便番号(ハイフンなし)</th>
+              <td><%= f.text_field :postcode, autofocus: true, id:"inputName", placeholder:"0000000"%></td>
+          </tr>
+          <tr class="label">
+              <th>住所</th>
+              <td><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"東京都渋谷区代々木神園町0-0"%></td>
+          </tr>
+          <tr class="label">
+              <th>電話番号(ハイフンなし)</th>
+              <td><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"00000000000"%></td>
+          </tr>
+          <tr class="label">
+              <th>メールアドレス</th>
+              <td><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"hoge@example.com"%></td>
+          </tr>
+          
+    </table>
+        <%= f.submit "編集内容を保存",class:'button' %>
+        <%= button_to "退会する", {controller: 'customers', action: 'withdraw'},{method: :patch, class: "d-button"}%>
+     <% end %>
+ </div>
+ 
