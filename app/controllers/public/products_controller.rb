@@ -1,6 +1,7 @@
 class Public::ProductsController < ApplicationController
 
   def top
+    @genres = Genre.all
   end
 
   def about
@@ -10,6 +11,10 @@ class Public::ProductsController < ApplicationController
   end
 
   def show
+  end
+  
+  def search
+  @genres = Genre.all
   end
 
   private

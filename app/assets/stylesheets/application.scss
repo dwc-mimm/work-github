@@ -17,8 +17,16 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- .navbar-brand{
-  height: 30px;
-  width: 30px;
-  
- }
+.container{
+ display: flex;
+ padding: 5px;
+}
+
+.image{
+ width: 200px;
+}
+
+.search_form{
+  display: flex;
+  justify-content: flex-end;
+}

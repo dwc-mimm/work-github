@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/about' => 'public/products#about', as: 'about'
   get 'customers/quit' => 'public/customers#quit', as: 'quit'
   patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+  get '/search', to: 'searches#search'
   
   scope module: :public do
     resources :products, only: [:index, :show]
