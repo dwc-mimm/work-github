@@ -9,13 +9,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :customers
-<<<<<<< HEAD
-
-  root to: 'public/products#top'
-  get '/about' => 'public/products#about', as: 'about'
-  
-
-=======
+  #以下の記述はおそらく
   # :controllers => {
   #   :sessions => 'customers/sessions',
   #   :registrations => 'customers/registrations',
@@ -27,16 +21,11 @@ Rails.application.routes.draw do
   get 'customers/quit' => 'public/customers#quit', as: 'quit'
   patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
   
->>>>>>> 8f9e788fdf3b0ce87430e03f60ab74bf817b262d
   scope module: :public do
     resources :products, only: [:index, :show]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
     resources :carts, only: [:index, :create, :update, :destroy] 
-<<<<<<< HEAD
-    resources :customers, only: [:show] do
-=======
     resources :customers, only: [:show, :edit, :update] do
->>>>>>> 8f9e788fdf3b0ce87430e03f60ab74bf817b262d
       collection do
         delete '/' => 'carts#destroy_all'
       end
