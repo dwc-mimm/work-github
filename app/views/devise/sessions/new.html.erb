@@ -1,0 +1,29 @@
+<%# ヘッダー部分テンプレート挿入部分%>
+
+<h2>ログイン</h2>
+
+<%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
+  <div class="contents-box">
+    <div id="text">
+      <h4>会員の方はこちらからログイン</h4>
+    </div>
+    <div class="field">
+      <%= f.label :email,"メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  
+    <div class="field">
+      <%= f.label :password,"パスワード" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+  
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+  </div>
+<% end %>
+
+<div class-"no-sign_up">
+  <h4>会員登録がお済みでない方</h4>
+  <p><a href="#">こちら</a>から新規登録を行ってください。</p>
+</div>
