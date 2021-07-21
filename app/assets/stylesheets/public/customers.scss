@@ -1,3 +1,28 @@
 // Place all the styles related to the public/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+*{
+    list-style:none;
+    max-width:100%;
+}
+.inner {
+    margin:0 20% 0 20%;
+}
+.banner {
+    width:200px;
+    border:solid 1px black;
+    text-align:center;
+    background-color:lightgray;
+    margin-top:10px;
+}
+
+.button {
+  border:solid 1px black;
+  margin-left:30px;
+}
+.name {
+    padding-left:10px;
+}
+.button-class {
+    display:flex;
+}
