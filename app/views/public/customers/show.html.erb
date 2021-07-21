@@ -1,1 +1,37 @@
-<h1>マイページ</h1>
+<%# ヘッダー挿入部分 %>
+
+<h4 class="banner">マイページ</h4>
+<h5>登録情報</h5>
+<%= button_to "編集する", {controller: 'customers', action: 'edit'},{method: :get, class: "button"}%>
+<%# ここはボタンに書き換え %>
+
+<ul class="table">
+    <ul class="content">
+        <li>氏名</li>
+        <li></li>
+    </ul>
+    <ul class="content">
+        <li>カナ</li>
+        <li></li>
+    </ul>
+    <ul class="content">
+        <li>郵便番号</li>
+        <li></li>
+    </ul>
+    <ul class="content">
+        <li>住所</li>
+        <li></li>
+    </ul>
+    <ul class="content">
+        <li>電話番号</li>
+        <li></li>
+    </ul>
+    <ul class="content">
+        <li>メールアドレス</li>
+        <li></li>
+    </ul>
+</ul>
+<p>配送先</p>
+<%= button_to "一覧を見る", {controller: 'deliveries', action: 'index'},{method: :get, class: "button"}%>
+<p>注文履歴</p>
+<%= button_to "一覧を見る", {controller: 'orders', action: 'index'},{method: :get, class: "button"}%>
