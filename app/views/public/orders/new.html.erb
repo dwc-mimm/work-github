@@ -1,76 +1,81 @@
 <div class='container'>
  <div class='row'>
   <div class='col-md-8'>
-   <thead>
+   
     <th><h4>注文情報入力</h4></th>
-   </thead> 
+ <!-- カート内に商品が存在するかの記述-->
+  <%# if current_customer.carts.present? %>
+  
 <div class="field">
  <tbody>
   
   <div class="payment_method">
-  <%= form_with model: @order do |f| %>
+  <%= form_with model: @order, url:confirm_path, method: :post, local: true do |f| %>
    <th><h5>支払方法</h5></th>
   <div class="radio-inline">
    <th>
-   <%= f.radio_button :payment_method, :"0", checked: "checked" %>
-   <%= f.label :クレジットカード, class: "payment_method" %>
+   <tr><%= f.radio_button :payment_method, :"0", checked: "checked" %></tr>
+   <tr><%= f.label :クレジットカード, class: "payment_method" %></tr>
    </th>
   </div>
  <div class="radio-inline">
   <th>
-  <%= f.radio_button :payment_method, :"1" %>
-  <%= f.label :銀行振込, class: "payment_method" %>
+  <tr><%= f.radio_button :payment_method, :"1" %></tr>
+  <tr><%= f.label :銀行振込, class: "payment_method" %></tr>
   </th>
  </div>
  </div>
- 
  
  <div class="address">
   <th><h4>お届け先</h4></th>
- <div class="radio-inline">
   <th>
-   <%= f.radio_button :address, :ご自身の住所, checked: "checked" %>
-   <%= f.label :ご自身の住所, class: "address" %>
+   <tr><%= f.radio_button :address, :ご自身の住所, checked: "checked" %></tr>
+   <tr><%= f.label :ご自身の住所, class: "address" %></tr>
   </th>
   <th>
-   <!--%= @cutstomer.address %-->
-  <!--ページ実装されてから実装-->
+   <tr><%= current_customer.postcode %></tr>
+   <tr><%= current_customer.address %></tr>
+  </th>
+  <th>
+   <tr><%= current_customer.last_name %></tr>
+   <tr><%= current_customer.first_name %></tr>
   </th>
  </div>
   
  <div class="radio-inline">
   <th>
-   <%= f.radio_button :address, :登録住所から選択 %>
-   <%= f.label :登録住所から選択, class: "address" %>
+   <tr><%= f.radio_button :address, :登録住所から選択 %></tr>
+   <tr><%= f.label :登録住所から選択, class: "address" %></tr>
  </div>
   </th>
   <th>
-　 登録住所一覧
-　  <!--登録住所一覧（方法不明）-->
+  <!--登録住所一覧表示　記述正しいか自信ないです　-->
+　 <p>登録住所一覧</p>
+　 <tr><%= f.collection_select(:deliverie_address_id, @deliverie_addresses, :id, :current_order_adderss) %></tr>
 　</th>
 　
  <div class="radio-inline">
   <th>
-   <%= f.radio_button :address, :新しいお届け先 %>
-   <%= f.label :新しいお届け先, class: "address" %>
+   <tr><%= f.radio_button :address, :新しいお届け先 %></tr>
+   <tr><%= f.label :新しいお届け先, class: "new-address" %></tr>
   </th>
  </div>
  <div class="text-inline">
   <th>
-   <%= f.label :postcode, "郵便番号（ハイフンなし)" %> 
-   <%= f.text_field :postcode %>
+   <tr><%= f.label :postcode, "郵便番号（ハイフンなし)" %></tr>
+   <tr><%= f.text_field :postcode %></tr>
   </th>
  </div>
  <div class="text-inline">
   <th>
-   <%= f.label :address, "住所" %>
-   <%= f.text_field :address %>
+   <tr><%= f.label :address, "住所" %></tr>
+   <tr><%= f.text_field :address %></tr>
   </th>
  </div>
  <div class="text-inline">
   <th>
-   <%= f.label :name, "宛名" %>
-   <%= f.text_field :name %>
+   <tr><%= f.label :name, "宛名" %></tr>
+   <tr><%= f.text_field :name %></tr>
   </th>
  </div>
  
@@ -78,6 +83,9 @@
   <th><%= f.submit "確認画面へ進む" %></th>
  <% end %>
   </div>
+  <%# else %>
+   <th>カート内が空です</th>
+  <%# end %>
  </tbody>
 </div>
 </diV>

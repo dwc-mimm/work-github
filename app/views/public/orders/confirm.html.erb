@@ -3,6 +3,7 @@
     <div class='col-md-8'>
 <div class="field">
  <h4>注文情報確認</h4>
+ <% if current_customer.carts.present? %>
 <table class='left-header'>
 <thead>
  <th>
@@ -12,35 +13,56 @@
   <th>小計</th>
  </th>
   ビュー作成されてから修正、確認
+  注文商品テーブルがpublicに存在せずカートに金額カラムが存在しない
  <!--<table class='left-body'>
-  <!% @order_products.each do |order_product| %>
-  <th><!--%= order_product.puroduct.id %></th>
-  <th><!--%= order_product.tax_included_price %></th>
-  <th><!--%= order_product.product_quantity %></th>
-  <th><!--%= total_price使用？ --></th>
+  <!% @carts.each do |cart| %>
+  <td><!--%= cart.puroduct.id %></td>
+  <td><!--%= cart.tax_included_price %></td>
+  <td><!--%= cart.product_quantity %></td>
+  <td><!--%= total_price使用？ --></td>
  </table>
 </thead>
 
 <tbody>
  カート内商品
 </tbody>
-
+ <!--% end %-->
 </table>
 <table class='right'>
- <th>送料</th>
- <th>商品合計</th>
- <th>請求金額</th>
+ <tr>
+  <th>送料</th>
+  <td><%= @order.postage %></td>
+ </tr>
+ <tr>
+  <th>商品合計</th>
+  <td><%= total_price(@carts) %></td>
+ </tr>
+ <tr>
+  <th>請求金額</th>
+  <td><%= payment(@oreder) %></td>
+ </tr>
 </table>
 
- <div class="payment_method">
-  <!--% orders.each do |order| %-->
-  <p>支払方法</p>
+ <div class="left-body">
+ <tr>
+  <th>支払方法</th>
+  <td><%= @order.payment_method %></td>
+ </tr>
+ <tr>
+  <th>お届け先</th>
+  <td><%= @order.postcode %></td>
+  <td><%= @order.address %></td>
+  <td><%= @order.name %></td>
+ </tr>
  </div>
- <div class="address">
-  <p>お届け先</p> 
+ <div class="col-xs-11">
+   <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+   <%= f.submit "注文を確定させる", class: 'btn btn-primary' %>
+  <% end %>
  </div>
- <%= link_to "注文を確定させる", complete_path, class: 'btn btn-primary' %>
- 
+  <% else %>
+   <th>カート内が空です</th>
+  <% end %>
 </div>
 </div>
 </div>
