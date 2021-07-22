@@ -2,23 +2,43 @@
  <div class='row'>
   <div class='col-md-8'>
       <th><h4>注文履歴一覧</h4></th>
+  <table>
    <thead>
-  <table class='header'>
+  <tr class='header'>
     <th>注文日</th>
     <th>配送先</th>
     <th>注文商品</th>
     <th>支払金額</th>
     <th>ステータス</th>
     <th>注文詳細</th>
-   </table>
+   </tr>
    </thead>
    
    <tbody>
      <%= @orders.each do |orders| %>
-     
+    <tr>
+     <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+    <tr>
+     <td><%= order.postcode %></td>
+     <td><%= order.address %></td>
+     <td><%= order.name %></td>
+    </tr>
+    <tr>
+    <!-- 注文商品(表記方法不明 orderproductと紐づけ？)-->
+    </tr>
+    <tr>
+     <td><%= order.payment %></td>
+    </tr>
+    <tr>
+     <td><%= order.order_status %></td>
+    </tr>
+    <tr>
+     <td><%= link_to "表示する", order_path(order), class: "d-button" %> </td>
+    </tr>
+     <% end %>
    </tbody>
-   
-   
+  </table>
   </div>   
  </div>   
 </div>

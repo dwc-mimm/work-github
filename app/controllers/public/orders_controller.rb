@@ -40,6 +40,8 @@ class Public::OrdersController < ApplicationController
  end
  
  def show
+  @orders = Order.find(params[:id])
+  
  end
  
  def order_params
