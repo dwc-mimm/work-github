@@ -15,7 +15,7 @@ class Public::ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end
-  
+
   def search
   @genres = Genre.all
   end
