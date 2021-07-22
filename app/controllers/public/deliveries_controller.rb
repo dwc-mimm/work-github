@@ -1,5 +1,7 @@
 class Public::DeliveriesController < ApplicationController
-
+ #before_action :authenticate_customer!
+ #ログイン機能実装後
+ 
 def index
     @delivery = Delivery.new
     @deliveries = Delivery.all
