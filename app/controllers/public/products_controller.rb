@@ -1,6 +1,7 @@
 class Public::ProductsController < ApplicationController
 
   def top
+    @genres = Genre.all
     @products = Product.all.order(created_at: :desc)
   end
 
@@ -13,6 +14,10 @@ class Public::ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+  end
+  
+  def search
+  @genres = Genre.all
   end
 
   private
