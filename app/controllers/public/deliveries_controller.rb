@@ -24,7 +24,7 @@ end
 
 def destroy
     @delivery = Delivery.find(params[:id])
-    @delivery= destroy
+    @delivery.destroy
     redirect_to deliveries_path
 end
 

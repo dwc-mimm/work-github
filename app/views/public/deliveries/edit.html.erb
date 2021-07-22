@@ -5,17 +5,24 @@
   <div class='col-md-12'>
   <div class="row">
     <th><h4>配送先編集</h4></th>
+   <%= form_with model: @delivery, url:delivery_path, local:true do |f| %>
    <tr>
-    <th>郵便番号</th>
-    <td><%= @delivery.postcode %></td>
-   </tr>
-   <tr>
-     <th>住所</th>
-     <td><%= @delivery.address %></td>
-   </tr>
-   <tr>
-     <th>宛名</th>
-     <td><%= @delivery.name %></td>
+   <div class=" col-xs-1 ">
+     <tr><%= f.label :郵便番号 %></tr>
+     <tr><%= f.text_field :postcode %></tr>
+    </div>
+    <div class=" col-xs-2 ">
+     <tr><%= f.label :住所 %></tr>
+     <tr><%= f.text_field :address %></tr>
+    </div>
+    <div class=" col-xs-2 ">
+     <tr><%= f.label :宛名 %></tr>
+     <tr><%= f.text_field :name %></tr>
+    </div>
+    <div class=" col-xs-1 ">
+    <tr><%= f.submit "変更内容を保存" %></tr>
+    </div>
+  <% end %>
    </tr>
   </div>
   </div>
