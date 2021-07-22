@@ -2,6 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="/">
+
         <%= image_tag ('header_logo.png'), alt: "ながのCAKE", class: "image" %>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,11 +10,22 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
+
+
         <% if customer_signed_in? %>
-          <li><%= link_to 'マイページ', customer_path(current_customer.id), class: 'btn btn-light' %></li>
-          <li><%= link_to '商品一覧', products_path, class: 'btn btn-light' %></li>
-          <li><%= link_to 'カート', cart_path(current_customer.id), class: 'btn btn-light' %></li>
-          <li><%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-light' %></li>
+          <li><%= link_to 'マイページ', customer_path(current_customer.id), class: 'nav-link text-light' %></li>
+          <li><%= link_to '商品一覧', products_path, class: 'nav-link text-light' %></li>
+          <li><%= link_to 'カート', cart_path(current_customer.id), class: 'nav-link text-light' %></li>
+          <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-light' %></li>
+
+        <% elsif admin_signed_in? %>
+          <li><%= link_to "商品一覧", admin_products_path, class: "nav-link text-light" %></li>
+          <li><%= link_to "会員一覧", admin_customers_path, class: "nav-link text-light"  %></li>
+          <li><%= link_to "注文履歴一覧", admin_orders_path, class: "nav-link text-light" %></li>
+          <li><%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link text-light" %></li>
+          <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link text-light" %></li>
+
+
         <% else %>
           <li><%= link_to 'About', about_path, class: 'btn btn-light' %></li>
           <li><%= link_to '商品一覧', products_path, class: 'btn btn-light'  %></li>
@@ -23,6 +35,7 @@
         </ul>
       </div>
     </div>
+
     </nav>
     <div class="search_form"><%= render 'searches/form' %></div>
 </header>
