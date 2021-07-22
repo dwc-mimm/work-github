@@ -3,9 +3,16 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :products, except: [:destroy]
+    resources :orders, only: [:index, :show, :update]
   end
 
-  devise_for :admins
+  devise_for :admins, controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :customers
@@ -21,8 +28,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     resources :products, only: [:index, :show]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-    resources :carts, only: [:index, :create, :update, :destroy] 
-    resources :customers, only: [:show, :edit, :update] 
+    resources :carts, only: [:index, :create, :update, :destroy]
+    resources :customers, only: [:show, :edit, :update]
     resources :orders,only: [:new,:create,:index,:show] do
       collection do
         delete '/' => 'carts#destroy_all'
