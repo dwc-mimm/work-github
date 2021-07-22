@@ -1,8 +1,34 @@
-<<<<<<< HEAD
-<h1>テスト</h1>
-<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-<%= link_to 'マイページ', customer_path(current_customer.id) %>
-=======
-<%#<%= render 'layouts/header' %>
-<h1>Top画面です</h1>
->>>>>>> 8f9e788fdf3b0ce87430e03f60ab74bf817b262d
+<%= render 'layouts/header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      サイドバー
+    </div>
+    <div class="col-9">
+      <div class="center-block text-center">
+        <p>
+          ようこそ、ながのCAKEへ！<br>
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+
+        <div>
+        <h2>新着商品</h2>
+        <% @products.first(4).each do |product| %>
+          <%= link_to product_path(product.id) do %>
+            <div>
+              <%= attachment_image_tag(product, :image, :fill, 150, 150, fallback: "no_image.jpg") %>
+              <%= product.name %>
+              <%= product.tax_excluded_price %>
+            </div>
+          <% end %>
+        <% end %>
+        <%= link_to "全ての商品を見る", products_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
