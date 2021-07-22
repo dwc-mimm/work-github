@@ -16,6 +16,16 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
-.image {
- width:100px;
+
+.container{
+ display: flex;
+ padding: 5px;
 }
+
+.image{
+ width: 200px;
+}
+
+.search_form{
+  display: flex;
+  justify-content: flex-end;
