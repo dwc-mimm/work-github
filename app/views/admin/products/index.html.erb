@@ -4,18 +4,26 @@
   
 <div>
   <table class="admin-product-index">
+    <tr>
       <th>商品ID</th>
       <th>商品名</th>
       <th>税抜価格</th>
       <th>ジャンル</th>
       <th>ステータス</th>
+    </tr>
+    <tr>
       <% @products.each do |product| %>
           <td></td>
           <td><%= product.name %></td>
           <td><%= product.tax_excluded_price %></td>
           <td></td>
-          <td><%= product.sale_status %></td>
-      <% end %>    
+            <% if product.sale_status == true %>
+                <td>販売中</td>
+              <% else %>
+                <td>販売停止中</td>
+            <% end %>
+      <% end %> 
+    </tr>
   </table>
 </div>
 

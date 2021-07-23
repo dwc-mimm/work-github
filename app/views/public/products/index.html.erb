@@ -8,7 +8,9 @@
       <% @products.each do |product| %>
         <%= link_to product_path(product.id) do %>
           <div>
-            <%= attachment_image_tag(product, :image, :fill, 150, 150, fallback: "no_image.jpg") %>
+            <span>><%= attachment_image_tag product, :image %></span
+            <%# <%= attachment_image_tag(product, :image, :fill, 150, 150, fallback: "no_image.jpg") %>
+            <%# 上記コード画像表示できなかったので 一応違うコード書いておきました%>
             <%= product.name %>
             <%= product.tax_excluded_price %>円
           </div>
