@@ -1,0 +1,55 @@
+<!--%= render 'layouts/header' %-->
+
+<div class='container'>
+ <div class='row'>
+  <div class='col-md-12'>
+ <th><h4><%= @customer.last_name %>
+         <%= @customer.first_name %>さんの会員情報</h4></th>
+ <table class='table'>
+    <tr>
+     <th>会員ID</th>
+     <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+     <th>氏名</th>
+     <td><%= @customer.last_name %>
+         <%= @customer.first_name %></td>
+    </tr>
+    <tr>
+     <th>フリガナ</th> 
+     <td><%= @customer.last_name_kana %>
+         <%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+     <th>郵便番号</th>
+     <td><%= @customer.postcode %></td>
+    </tr>
+    <tr>
+     <th>住所</th>
+     <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+     <th>電話番号</th>
+     <td><%= @customer.phone_number %></td>
+    </tr>
+    <tr>
+     <th>メールアドレス</th>
+     <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+     <th>会員ステータス</th>
+     <td><%= @customer.is_deleted %></td>
+    </tr>
+ </table>
+ <table class='table'>
+ <td><%= link_to edit_admin_customer_path(@customer) do %>
+      <button class="btn btn-success" >編集する</button>
+       <% end %>
+     <%= link_to admin_orders_path do %>
+      <button class="btn btn-primary" >注文履歴を見る</button>
+       <% end %>
+     </td>
+ </table>
+</div>
+</div>
+</div>
