@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
-
-
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
   get 'customers/quit' => 'public/customers#quit', as: 'quit'
@@ -27,8 +25,6 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#search'
   get 'orders/confirm' => 'public/orders#confirm', as:'confirm'
   get 'orders/complete' => 'public/orders#complete', as:'complete'
-
-  
 
   scope module: :public do
     resources :orders, only: [:new, :create, :index, :show]
