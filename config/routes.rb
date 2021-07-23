@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   devise_for :customers
 
+
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
   get 'customers/quit' => 'public/customers#quit', as: 'quit'
