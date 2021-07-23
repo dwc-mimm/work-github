@@ -8,4 +8,9 @@ class Product < ApplicationRecord
 
   validates :genre_id, :image, :name, :description, :tax_excluded_price, :sale_status, presence: true
 
+  def tax_include
+    tax = 1.10
+    (tax_excluded_price * tax).round
+  end
+
 end
