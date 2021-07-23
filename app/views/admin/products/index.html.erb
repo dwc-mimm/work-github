@@ -1,0 +1,22 @@
+
+<div class="inner">
+  <h2>商品一覧(全<%= @products.count %>件)</h2>
+  
+<div>
+  <table class="admin-product-index">
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+      <% @products.each do |product| %>
+          <td></td>
+          <td><%= product.name %></td>
+          <td><%= product.tax_excluded_price %></td>
+          <td></td>
+          <td><%= product.sale_status %></td>
+      <% end %>    
+  </table>
+</div>
+
+</div>
