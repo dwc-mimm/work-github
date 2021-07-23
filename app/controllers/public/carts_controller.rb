@@ -1,13 +1,14 @@
 class Public::CartsController < ApplicationController
-  
-  
+
+
   def index
     @carts = Cart.where(customer_id: current_customer)
     @cart = Cart.new
   end
-  
+
   def create
-    @cart = current_customer.cart.new(cart_params)
+    @cart = Cart.new(cart_params)
+    @cart.customer_id = current_customer.id
     @cart.save
     redirect_to carts_path
   end
@@ -21,12 +22,12 @@ class Public::CartsController < ApplicationController
       render "index"
     end
   end
-  
+
   def destroy
-    cart = Cart.find(params[:id])
-    cart.destroy
+    @cart = Cart.find(params[:id])
+    @cart.destroy
   end
-  
+
   def destroy_all
     carts = Cart.where(customer_id: current_customer)
     carts.each do |cart|
@@ -34,7 +35,7 @@ class Public::CartsController < ApplicationController
     end
   end
 
-  
+
   private
   def cart_params
     params.require(:cart).permit(:product_id, :product_quantity)

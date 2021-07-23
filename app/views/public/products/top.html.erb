@@ -1,10 +1,10 @@
-<%= render 'layouts/header' %>
+<!--%= render 'layouts/header' %-->
 <div class="container">
   <div class="row">
     <div class="col-3">
-<%= render 'layouts/index' %>    </div>
+<!--%= render 'layouts/index' %-->    </div>
     <div class="col-9">
-      <div class="center-block text-center">
+      <div class="text-center">
         <p>
           ようこそ、ながのCAKEへ！<br>
           このサイトは、ケーキ販売のECサイトになります。<br>
@@ -17,9 +17,9 @@
         <% @products.first(4).each do |product| %>
           <%= link_to product_path(product.id) do %>
             <div>
-              <%= attachment_image_tag(product, :image, :fill, 150, 150, fallback: "no_image.jpg") %>
-              <%= product.name %>
-              <%= product.tax_excluded_price %>
+              <%= attachment_image_tag(product, :image, :fill, 150, 150, fallback: "no_image.jpg") %><br>
+              <%= product.name %><br>
+              <%= product.tax_excluded_price %>円(税抜き)
             </div>
           <% end %>
         <% end %>
