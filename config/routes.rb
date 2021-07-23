@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   devise_for :customers
 
 
-
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
   get 'customers/quit' => 'public/customers#quit', as: 'quit'
@@ -28,15 +27,12 @@ Rails.application.routes.draw do
   get 'orders/confirm' => 'public/orders#confirm', as:'confirm'
   get 'orders/complete' => 'public/orders#complete', as:'complete'
 
-  
-
   scope module: :public do
-    resources :orders, only: [:new, :create, :index, :show]
     resources :products, only: [:index, :show]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-    resources :carts, only: [:index, :create, :update, :destroy]
     resources :customers, only: [:show, :edit, :update]
-    resources :orders,only: [:new,:create,:index,:show] do
+    resources :orders, only: [:new,:create,:index,:show]
+    resources :carts, only: [:index, :create, :update, :destroy] do
       collection do
         delete '/' => 'carts#destroy_all'
       end

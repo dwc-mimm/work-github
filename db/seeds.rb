@@ -9,8 +9,8 @@
 Admin.create!(email: "admin@example.com",
              password:  "11111111",
              password_confirmation: "11111111")
-             
-             
+
+
 Genre.create!(name: "ケーキ")
 
 Genre.create!(name: "プリン")
@@ -18,3 +18,12 @@ Genre.create!(name: "プリン")
 Genre.create!(name: "焼き菓子")
 
 Genre.create!(name: "キャンディ")
+
+
+Product.create!(name: "イチゴのホールケーキ",
+                description: "美味しい",
+                tax_excluded_price: "1000",
+                genre_id: 1,
+                sale_status: [['販売中', true], ['販売停止', false]],
+                image: File.open("./app/assets/images/cake-1.jpg"))
+
