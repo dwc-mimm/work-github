@@ -16,10 +16,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :customers
-<<<<<<< HEAD
-
-=======
->>>>>>> 3ee0324f30cf44ad93fba897b3317bf6d1f28394
 
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
@@ -30,17 +26,12 @@ Rails.application.routes.draw do
   get 'orders/confirm' => 'public/orders#confirm', as:'confirm'
   get 'orders/complete' => 'public/orders#complete', as:'complete'
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 3ee0324f30cf44ad93fba897b3317bf6d1f28394
   scope module: :public do
-    resources :orders, only: [:new, :create, :index, :show]
     resources :products, only: [:index, :show]
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
-    resources :carts, only: [:index, :create, :update, :destroy]
     resources :customers, only: [:show, :edit, :update]
-    resources :orders,only: [:new,:create,:index,:show] do
+    resources :orders, only: [:new,:create,:index,:show]
+    resources :carts, only: [:index, :create, :update, :destroy] do
       collection do
         delete '/' => 'carts#destroy_all'
       end
