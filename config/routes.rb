@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   get 'orders/confirm' => 'public/orders#confirm', as:'confirm'
   get 'orders/complete' => 'public/orders#complete', as:'complete'
 
-
-
   scope module: :public do
     resources :orders, only: [:new, :create, :index, :show]
     resources :products, only: [:index, :show]

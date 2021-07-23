@@ -1,3 +1,29 @@
 // Place all the styles related to the admin/products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+*{
+    list-style:none;
+    max-width:100%;
+}
+.inner {
+    margin:0 20% 0 20%;
+}
+.admin-product-banner {
+    width:250px;
+    border:solid 1px black;
+    text-align:center;
+    background-color:lightgray;
+    margin-top:10px;
+}
+.admin-product-radio_button {
+    margin:0;
+    padding:0;
+    width:300px;
+    text-algin:center;
+}
+.admin-product-radio_button:first-child {
+    margin-right:-100px;
+}
+.admin-product-label {
+    margin-right:300px;
+}
