@@ -3,33 +3,28 @@ div class='container'>
     <div class='col-md-8'>
 <div class="field">
  <h4>注文情報確認</h4>
- <% if current_customer.carts.present? %>
-<table class='left-header'>
+ <!--% if current_customer.carts.present? %-->
+<table class="table table-bordered">
 <thead>
- <th>
+ <tr>
   <th>商品名</th>
   <th>単価</th>
   <th>数量</th>
   <th>小計</th>
- </th>
-  
- <table class='left-body'>
+ </tr>
+</thead>
+<tbody>
   <% sum = 0 %>
   <% @carts.each do |cart| %>
  <tr>
-  <td><%= cart.name %></td>
-  <td><%= cart.tax_excluded_price %></td>
-  <td><%= cart.product_quantity %></td>
+  <td><%= cart.product.name %></td>
+  <td><%= cart.product.tax_excluded_price %></td>
+  <td><%= cart.product.product_quantity %></td>
   <td><%= cart.subtotal %></td>
  </tr>
   <% end %>
- </table>
-</thead>
-
-<tbody>
- カート内商品
 </tbody>
- <!--% end %-->
+
 </table>
 <table class='right'>
 　<% sum = 0 %>
@@ -42,8 +37,9 @@ div class='container'>
   <td><% sum += @cart.subtotal %></td>
  </tr>
  <tr>
+  <% total_price = @cart.subtotal + 800 %>
   <th>請求金額</th>
-  <td>送料＋商品合計</td>
+  <td><%= total_price %></td>
  </tr>
 </table>
 
@@ -62,13 +58,19 @@ div class='container'>
  </tr>
  </div>
  <div class="col-xs-11">
-   <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
-   <%= f.submit "注文を確定させる", class: 'btn btn-primary' %>
+   <%= form_with model: @order, url: complete_path, method: :post, local: true do |f| %>
+   <%= f.hidden_filed :postcode %>
+   <%= f.hidden_filed :address %>
+   <%= f.hidden_filed :name %>
+   <%= f.hidden_filed :payment_method %>
+   <%= f.hidden_filed :total_price %>
+   
+   <th><%= f.submit "注文を確定させる", class: 'btn btn-primary' %></th>
   <% end %>
  </div>
-  <% else %>
+  <!--% else %-->
    <th>カート内が空です</th>
-  <% end %>
+  <!--% end %-->
 </div>
 </div>
 </div>

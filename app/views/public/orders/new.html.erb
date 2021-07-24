@@ -3,7 +3,7 @@
   <div class='col-md-20'>
 
     <th><h4>注文情報入力</h4></th>
- <!-- カート内に商品が存在するかの記述-->
+ <!-- カート内に商品が存在するか-->
   <%# if current_customer.carts.present? %>
 
 <div class="field">
@@ -46,7 +46,7 @@
 
  <div class="radio-inline">
   <th>
-   <tr><%= f.radio_button :addersses, "registration_adderss" %></tr>
+   <tr><%= f.radio_button :addresses, "registration_adderss" %></tr>
    <label>登録住所から選択</label>
   </th>
   </div>
