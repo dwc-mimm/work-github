@@ -1,6 +1,7 @@
-<div class="container">
+<%= render 'layouts/header' %>
+<div class="container-fluid">
   <div class="row">
-    <div class="mx-auto col-12 text-center center-block">
+    <div class="mx-auto col-10 taxt-center">
       <h2>ショッピングカート</h2>
       <%= link_to "全て削除", carts_path, class: "btn btn-danger", method: :delete %>
       <% if @carts.present? %>
@@ -42,27 +43,23 @@
             <% end %>
           </tbody>
         </table>
-      </div>
-      <div class="mx-auto col-10">
         <div>
           <%= link_to "買い物を続ける", products_path, class: "btn btn-primary" %>
+          <%= link_to '情報⼊⼒に進む', new_order_path, class: 'btn btn-success pull-right' %>
         </div>
-          <table class="table ">
-            <tbody>
-              <tr>
-                <td>合計金額</td>
-                <td><%= sum.to_s(:delimited) %>円</td>
-              </tr>
-            </tbody>
-          </table>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>合計金額</td>
+              <td><%= sum.to_s(:delimited) %>円</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <p class='pt-3 text-center'>
-        <%= link_to '情報⼊⼒に進む', new_order_path, class: 'btn btn-success' %>
-      </p>
       <% else %>
       <div class='row'>
-        <div class='col-md-10 offset-md-1'>
-          <h5 class='p-5 text-center'>商品はありません</h5>
+        <div class='mx-auto'>
+          <h5 class='text-center'>商品はありません</h5>
           <p class='text-center'>
             <%= link_to '買い物を続ける', products_path, class: 'btn btn-primary' %>
           </p>

@@ -1,20 +1,45 @@
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      ジャンル一覧
-    </div>
-    <div class="col-10">
+<%= render 'layouts/header' %>
+<div class="container-fluid">
+  <div class='row'>
+    <div class='mx-auto'>
       <h2>商品一覧(全<%= @products.count %>件)</h2>
-      <% @products.each do |product| %>
-        <%= link_to product_path(product.id) do %>
-          <div class="text-center">
-            <%= attachment_image_tag(product, :image, :fill, 150, 150, fallback: "no_image.jpg") %><br>
-            <%= product.name %><br>
-            <%= product.tax_excluded_price %>円
-          </div>
+      <table class='table table-hover border-bottom'>
+        <thead class='thead-white'>
+          <tr>
+            <th class='text-center'>商品画像</th>
+            <th class='text-center'>商品名</th>
+            <th class='text-center'>税抜価格</th>
+            <th class='text-center'>ジャンル</th>
+            <th class='text-center'>ステータス</th>
+          </tr>
+        </thead>
+        <% @products.each do |product| %>
+          <tbody>
+            <tr>
+              <td id='img_field'>
+                <%= attachment_image_tag(product, :image, size: '300x200', fallback: 'no_image.jpg') %>
+              </td>
+              <td class='text-center'>
+                <%= link_to product_path(product.id), class: 'btn-link' do %>
+                  <%= product.name %>
+                <% end %>
+              </td>
+              <td class='text-center'><%= product.tax_excluded_price.to_s(:delimited) %>円</td>
+              <td class='text-center'><%= product.genre.name %></td>
+              <td class='text-center'>
+                <% if product.sale_status == true %>
+                  <p>販売中</p>
+                <% else product.sale_status == false %>
+                  <p>売り切れ</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
         <% end %>
-      <% end %>
-      <%= paginate @products %>
+      </table>
     </div>
   </div>
 </div>
+
+<%= paginate @products %>
+<%= render 'layouts/footer' %>
