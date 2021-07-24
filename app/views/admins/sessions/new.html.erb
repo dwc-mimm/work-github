@@ -1,14 +1,16 @@
-<%= render 'layouts/header' %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-6 text-center center-block">
-      <h2>管理者ログイン</h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <%= f.label :"メールアドレス" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
+<h2>ログイン</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+  <%# <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+  <%# 上記コードは「ログアウトしました」を表示する記述　%>
+  <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
 
         <div class="field">
           <%= f.label :"パスワード" %><br />
