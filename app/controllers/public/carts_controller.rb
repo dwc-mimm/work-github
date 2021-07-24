@@ -24,8 +24,9 @@ class Public::CartsController < ApplicationController
   end
 
   def destroy
-    @cart = Cart.find(params[:id])
-    @cart.destroy
+    cart = Cart.find(params[:id])
+    cart.destroy
+    redirect_to carts_path
   end
 
   def destroy_all
@@ -33,6 +34,7 @@ class Public::CartsController < ApplicationController
     carts.each do |cart|
       cart.destroy
     end
+    redirect_to carts_path
   end
 
 
