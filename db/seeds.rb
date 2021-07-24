@@ -24,6 +24,6 @@ Product.create!(name: "イチゴのホールケーキ",
                 description: "美味しい",
                 tax_excluded_price: "1000",
                 genre_id: 1,
-                sale_status: [['販売中', true], ['販売停止', false]],
+                sale_status: true,
                 image: File.open("./app/assets/images/cake-1.jpg"))
 
