@@ -8,6 +8,7 @@ class Admin::ProductsController < ApplicationController
     end
 
     def show
+        @product = Product.find(params[:id])
     end
 
     def create
