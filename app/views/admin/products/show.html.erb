@@ -1,1 +1,48 @@
-<h1>商品詳細ページ</h1>
+<!--%= render 'layouts/header' %-->
+
+<div class="inner">
+
+    <h4 class="banner">商品詳細</h4>
+    <div class="product-container">
+        <div class="admin-product-image">
+            <%= attachment_image_tag @product, :image %>
+        </div>
+        <table class="table">
+                <tr>
+                    <th>商品名</th>
+                    <td><%= @product.name %></td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td><%= @product.description %></td>
+                </tr>
+                <tr>
+                    <th>ジャンル</th>
+                        <% if @product.genre_id == 1 %>
+                            <td>ケーキ</td>
+                        <% elsif product.genre_id == 2 %>
+                            <td>プリン</td>
+                        <% elsif product.genre_id == 3 %>
+                            <td>焼き菓子</td>
+                        <% elsif product.genre_id == 4 %>
+                            <td>キャンディ</td>
+                        <% end %>
+                </tr>
+                <tr>
+                    <th>税込価格</br>(税抜価格)</th>
+                    <% price = @product.tax_excluded_price * 1.1 %>
+                    <td><%= number_to_currency(price, unit: "￥",strip_insignificant_zeros: "true") %>(<%= @product.tax_excluded_price %>)円</td>
+                </tr>
+                <tr>
+                    <th>販売ステータス</th>
+                    <% if @product.sale_status == true %>
+                            <td>販売中</td>
+                        <% else %>
+                            <td>販売停止中</td>
+                    <% end %>
+                </tr>
+        </table>
+        <%= button_to '編集する', edit_admin_product_path(@product.id), method: :get %>
+    </div>
+</div>
+</div>

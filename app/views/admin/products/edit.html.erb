@@ -1,1 +1,48 @@
-<h1>商品詳細編集ページ</h1>
+<%# <%= render 'layouts/header' %>
+
+<div class="inner">
+    <h4 class="banner">商品編集</h4>
+    <%= form_with model: @product, url: admin_product_path, local: true do |f| %>
+    
+    <table class="table">
+          <tr class="label">
+              <th>商品画像</th>
+              <td><%= attachment_image_tag @product, :image %><br>
+                  <%= f.attachment_field :image, placeholder: "商品画像" %>
+              </td>
+          </tr>
+          </br>
+          <tr class="label">
+              <th>商品名</th>
+              <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"商品名"%></td>
+          </tr>
+          <tr class="label">
+              <th>商品説明</th>
+              <td><%= f.text_field :description, autofocus: true, id:"inputName", placeholder:"商品説明"%></td>
+          </tr>
+          <tr class="label">
+              <th>ジャンル</th>
+              <td>
+                  <label class="radio_button"><%= f.radio_button :genre_id, 1 %> ケーキ</label>
+                  <label class="radio_button"><%= f.radio_button :genre_id, 2 %> 焼き菓子</label>
+                  <label class="radio_button"><%= f.radio_button :genre_id, 3 %> プリン</label>
+                  <label class="radio_button"><%= f.radio_button :genre_id, 4 %> キャンディ</label>
+              </td>
+          </tr>
+          <tr class="label">
+              <th>税抜価格</th>
+              <td><%= f.text_field :tax_excluded_price, autofocus: true, id:"inputName", placeholder:"xxxx"%></td>
+          </tr>
+          <tr class="label">
+              <th>販売ステータス</th>
+              <td>
+                <label class="radio_button"><%= f.radio_button :sale_status, true %> 販売中</label>
+                <label class="radio_button"><%= f.radio_button :sale_status, false %> 販売停止中</label>
+              </td>
+          </tr>
+          
+    </table>
+        <%= f.submit "編集内容を保存",class:'button' %>
+     <% end %>
+ </div>
+ 
