@@ -12,10 +12,11 @@ class Product < ApplicationRecord
     tax = 1.10
     (tax_excluded_price * tax).round
   end
-  
-  def self.search(search)
-    return Product.all unless search
-    Product.where(['name LIKE ?', "%#{search}%"])
+
+  def self.search_for(value)
+    #return Product.all unless search
+    Product.where(['name LIKE ?', "%#{value}%"]).or(Product.where(genre_id: value))
   end
+
 
 end

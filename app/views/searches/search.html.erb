@@ -1,0 +1,47 @@
+<%= render 'layouts/header' %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="mx-auto">
+      <% if @datas.empty? %>
+        <h2>該当する商品はありません</h2>
+      <% else %>
+        <h2>商品一覧(全<%= @datas.count %>件)</h2>
+        <table class='table table-hover border-bottom'>
+        <thead class='thead-white'>
+          <tr>
+            <th class='text-center'>商品画像</th>
+            <th class='text-center'>商品名</th>
+            <th class='text-center'>税抜価格</th>
+            <th class='text-center'>ジャンル</th>
+            <th class='text-center'>ステータス</th>
+          </tr>
+        </thead>
+        <% @datas.each do |product| %>
+          <tbody>
+            <tr>
+              <td id='img_field'>
+                <%= attachment_image_tag(product, :image, size: '300x200', fallback: 'no_image.jpg') %>
+              </td>
+              <td class='text-center'>
+                <%= link_to product_path(product.id), class: 'btn-link' do %>
+                  <%= product.name %>
+                <% end %>
+              </td>
+              <td class='text-center'><%= product.tax_excluded_price.to_s(:delimited) %>円</td>
+              <td class='text-center'><%= product.genre.name %></td>
+              <td class='text-center'>
+                <% if product.sale_status == true %>
+                  <p>販売中</p>
+                <% else product.sale_status == false %>
+                  <p>売り切れ</p>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
+
