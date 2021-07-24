@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :products, except: [:destroy]
     resources :orders, only: [:index, :show, :update]
+    resources :searches, only: [:index, :show, :update]
   end
 
   devise_for :admins, controllers: {
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
     resources :deliveries, only: [:index, :create, :edit, :update, :destroy]
     resources :customers, only: [:show, :edit, :update]
     resources :orders, only: [:new,:create,:index,:show]
+    resources :searches, only: [:index, :show, :update]
     resources :carts, only: [:index, :create, :update, :destroy] do
       collection do
         delete '/' => 'carts#destroy_all'
