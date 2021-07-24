@@ -3,31 +3,30 @@ class Public::OrdersController < ApplicationController
  
  def new
   @order = Order.new
-  @deliveries = Delivery.where(customer: current_customer)
+  @deliveries = Delivery.all
  end
  
  def confirm
- @order = Order.new(
-  customer: current_customer,
-  payment_method: params[:order][:payment_method]
-  ) 
+  @cart = Cart.where(customer_id: current_customer)
+  @order = Order.new
+  @order.payment_method = params[:order][:payment_method].to_i
  
- if params[:order][:addresses] == "address"#登録住所（デフォルト）
+  if params[:order][:addresses] == "address"#登録住所（デフォルト）
   @order.postcode = current_customer.postcode
-  @order.address = cureent_customer.address
-  @order.name = cuurent_customer.last_name, current_customer.first_name
+  @order.address = current_customer.address
+  @order.name = current_customer.last_name, current_customer.first_name
  
- elsif params[:order][:addresses] == "registration_adderss"#登録済み住所
+  elsif params[:order][:addresses] == "registration_adderss"#登録済み住所
   @oreder.postcode = Address.find(params[:order][:address_id]).postcode
   @oreder.address =  Address.find(params[:order][:address_id]).address
   @oreder.name =  Address.find(params[:order][:address_id]).name
 
- elsif params[:order][:addreses] == "new_address"#新規住所登録
-   @order.address = params[:order][:address]
+  elsif params[:order][:addreses] == "new_address"#新規住所登録
    @order.postcode = params[:order][:postcode]
+   @order.address = params[:order][:address]
    @oreder.name = params[:order][:name]
 
- end
+  end
  end
  
  def complete
