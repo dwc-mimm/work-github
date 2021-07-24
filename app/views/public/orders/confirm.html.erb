@@ -12,14 +12,17 @@ div class='container'>
   <th>数量</th>
   <th>小計</th>
  </th>
-  ビュー作成されてから修正、確認
-  注文商品テーブルがpublicに存在せずカートに金額カラムが存在しない
- <!--<table class='left-body'>
-  <!% @carts.each do |cart| %>
-  <td><!--%= cart.puroduct.id %></td>
-  <td><!--%= cart.tax_included_price %></td>
-  <td><!--%= cart.product_quantity %></td>
-  <td><!--%= total_price使用？ --></td>
+  
+ <table class='left-body'>
+  <% sum = 0 %>
+  <% @carts.each do |cart| %>
+ <tr>
+  <td><%= cart.name %></td>
+  <td><%= cart.tax_excluded_price %></td>
+  <td><%= cart.product_quantity %></td>
+  <td><%= cart.subtotal %></td>
+ </tr>
+  <% end %>
  </table>
 </thead>
 
@@ -29,17 +32,18 @@ div class='container'>
  <!--% end %-->
 </table>
 <table class='right'>
+　<% sum = 0 %>
  <tr>
   <th>送料</th>
   <td><%= @order.postage %></td>
  </tr>
  <tr>
   <th>商品合計</th>
-  <td><%= total_price(@carts) %></td>
+  <td><% sum += @cart.subtotal %></td>
  </tr>
  <tr>
   <th>請求金額</th>
-  <td><%= payment(@oreder) %></td>
+  <td>送料＋商品合計</td>
  </tr>
 </table>
 
@@ -50,6 +54,8 @@ div class='container'>
  </tr>
  <tr>
   <th>お届け先</th>
+ </tr>
+ <tr>
   <td><%= @order.postcode %></td>
   <td><%= @order.address %></td>
   <td><%= @order.name %></td>
