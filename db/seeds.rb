@@ -27,3 +27,74 @@ Product.create!(name: "イチゴのホールケーキ",
                 sale_status: true,
                 image: File.open("./app/assets/images/cake-1.jpg"))
 
+Product.create!(name: "チョコケーキ",
+                description: "美味しい",
+                tax_excluded_price: "1500",
+                genre_id: 1,
+                sale_status: true,
+                image: File.open("./app/assets/images/cake-2.jpg"))
+
+Product.create!(name: "イチゴチョコケーキ",
+                description: "美味しい",
+                tax_excluded_price: "900",
+                genre_id: 1,
+                sale_status: true,
+                image: File.open("./app/assets/images/cake-3.jpg"))
+
+Product.create!(name: "ベリーケーキ",
+                description: "美味しい",
+                tax_excluded_price: "2000",
+                genre_id: 1,
+                sale_status: true,
+                image: File.open("./app/assets/images/cake-4.jpg"))
+
+Product.create!(name: "チョコベリーケーキ",
+                description: "美味しい",
+                tax_excluded_price: "2500",
+                genre_id: 1,
+                sale_status: true,
+                image: File.open("./app/assets/images/cake-5.jpg"))
+
+Product.create!(name: "ベリープリン",
+                description: "美味しい",
+                tax_excluded_price: "500",
+                genre_id: 2,
+                sale_status: true,
+                image: File.open("./app/assets/images/puding-1.jpg"))
+
+Product.create!(name: "チョコベリープリン",
+                description: "美味しい",
+                tax_excluded_price: "800",
+                genre_id: 2,
+                sale_status: true,
+                image: File.open("./app/assets/images/puding-2.jpg"))
+
+Product.create!(name: "エンゼルドーナツ",
+                description: "美味しい",
+                tax_excluded_price: "400",
+                genre_id: 3,
+                sale_status: true,
+                image: File.open("./app/assets/images/bake-1.jpg"))
+
+Product.create!(name: "マカロン詰め合わせ",
+                description: "美味しい",
+                tax_excluded_price: "2500",
+                genre_id: 3,
+                sale_status: true,
+                image: File.open("./app/assets/images/bake-2.jpg"))
+
+Product.create!(name: "色とりどりキャンディ",
+                description: "美味しい",
+                tax_excluded_price: "1000",
+                genre_id: 4,
+                sale_status: true,
+                image: File.open("./app/assets/images/candy-1.jpg"))
+
+Product.create!(name: "キャンディ詰め合わせ",
+                description: "美味しい",
+                tax_excluded_price: "2000",
+                genre_id: 4,
+                sale_status: true,
+                image: File.open("./app/assets/images/candy-2.jpg"))
+
+
