@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
 
   get '/search', to: 'searches#search'
-  get 'orders/confirm' => 'public/orders#confirm', as:'confirm'
+  post 'orders/confirm' => 'public/orders#confirm', as:'confirm'
   get 'orders/complete' => 'public/orders#complete', as:'complete'
 
   scope module: :public do
