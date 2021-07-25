@@ -52,7 +52,9 @@
   </div>
   <th>
 
-　 <tr><%= f.collection_select(:address, :@deliveries, :id, :address_all) %></tr>
+
+　 <tr><%= f.collection_select(:address, @deliveries, :id, :address) %></tr>
+
 　 <label>登録住所一覧</label>
 
 
