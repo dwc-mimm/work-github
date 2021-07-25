@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
  end
  
  def confirm
-  @cart = Cart.where(customer_id: current_customer)
+  @carts = Cart.where(customer_id: current_customer)
   @order = Order.new
   @order.payment_method = params[:order][:payment_method].to_i
  
