@@ -51,8 +51,8 @@
   </th>
   </div>
   <th>
-　 <th>登録住所一覧</th>
-　 <tr><%= f.collection_select(:delivery_id, @deliveries, :id, :order.address) %></tr>
+　 <tr><%= f.collection_select(:address, :@deliveries, :id, :address_all) %></tr>
+　 <label>登録住所一覧</label>
 　</th>
 　
  <div class="radio-inline">
