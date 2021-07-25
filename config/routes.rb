@@ -16,12 +16,17 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  devise_for :customers
+  devise_for :customers, controllers: {
+    sessions: 'public/customers/sessions',
+    passwords: 'public/customers/passwords',
+    registrations: 'public/customers/registrations'
+  }
 
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
   get 'customers/quit' => 'public/customers#quit', as: 'quit'
   patch 'customers/withdraw' => 'public/customers#withdraw', as: 'withdraw'
+  patch '/customers/:id/hide' => 'public/customers#hide', as: 'customers_hide'
 
   get '/search', to: 'searches#search'
   post 'orders/confirm' => 'public/orders#confirm', as:'confirm'
