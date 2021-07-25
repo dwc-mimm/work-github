@@ -1,29 +1,32 @@
 class Public::OrdersController < ApplicationController
- #before_action :authenticate_customer!
- #ログイン機能実装後
-    
+ before_action :authenticate_customer!
+ 
  def new
   @order = Order.new
-  @customer = current_customer
- 
+  @deliveries = Delivery.all
  end
  
  def confirm
- @carts = cuurent_cart
- @order = Order.new(
-  customer: current_customer,
-  payment_method: params[:order][:payment_method]
- )
- if params[:order][:addresses] == "customer_address"#customerの住所が入っている場合(カラム名は無効に合わせて変更)
-  @order.postcode = current_customer.postcode
-  @order.address = cureent_customer.address
-  @order.name = cuurent_customer.last_name, current_customer.first_name
+  @carts = Cart.where(customer_id: current_customer)
+  @order = Order.new
+  @order.payment_method = params[:order][:payment_method].to_i
  
- elsif params[:order][:addresses]  ="new-address"#orderで新規住所登録した場合
-  @oreder.postcode = params[:order][:postcode]
-  @oreder.address = params[:oreder][:address]
-  @oreder.name = params[:oreder][:name]
- end
+  if params[:order][:addresses] == "address"#登録住所（デフォルト）
+  @order.postcode = current_customer.postcode
+  @order.address = current_customer.address
+  @order.name = current_customer.last_name, current_customer.first_name
+ 
+  elsif params[:order][:addresses] == "registration_adderss"#登録済み住所
+  @oreder.postcode = Address.find(params[:order][:address_id]).postcode
+  @oreder.address =  Address.find(params[:order][:address_id]).address
+  @oreder.name =  Address.find(params[:order][:address_id]).name
+
+  elsif params[:order][:addreses] == "new_address"#新規住所登録
+   @order.postcode = params[:order][:postcode]
+   @order.address = params[:order][:address]
+   @oreder.name = params[:order][:name]
+
+  end
  end
  
  def complete
@@ -51,4 +54,6 @@ class Public::OrdersController < ApplicationController
  def address_params
   params.require(:order).permit(:postcode, :address, :name)
  end
+ 
+ 
 end

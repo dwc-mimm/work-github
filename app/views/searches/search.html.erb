@@ -1,9 +1,12 @@
 <%= render 'layouts/header' %>
 <div class="container-fluid">
-  <div class='row'>
-    <div class='mx-auto'>
-      <h2>商品一覧(全<%= @products.count %>件)</h2>
-      <table class='table table-hover border-bottom'>
+  <div class="row">
+    <div class="mx-auto">
+      <% if @datas.empty? %>
+        <h2>該当する商品はありません</h2>
+      <% else %>
+        <h2>商品一覧(全<%= @datas.count %>件)</h2>
+        <table class='table table-hover border-bottom'>
         <thead class='thead-white'>
           <tr>
             <th class='text-center'>商品画像</th>
@@ -13,7 +16,7 @@
             <th class='text-center'>ステータス</th>
           </tr>
         </thead>
-        <% @products.each do |product| %>
+        <% @datas.each do |product| %>
           <tbody>
             <tr>
               <td id='img_field'>
@@ -37,9 +40,8 @@
           </tbody>
         <% end %>
       </table>
+      <% end %>
     </div>
   </div>
 </div>
 
-<%= paginate @products %>
-<%= render 'layouts/footer' %>

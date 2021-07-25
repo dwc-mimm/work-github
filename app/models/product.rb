@@ -8,4 +8,15 @@ class Product < ApplicationRecord
 
   validates :genre_id, :image, :name, :description, :tax_excluded_price, :sale_status, presence: true
 
+  def tax_include
+    tax = 1.10
+    (tax_excluded_price * tax).round
+  end
+
+  def self.search_for(value)
+    #return Product.all unless search
+    Product.where(['name LIKE ?', "%#{value}%"]).or(Product.where(genre_id: value))
+  end
+
+
 end

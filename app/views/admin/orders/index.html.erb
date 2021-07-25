@@ -1,0 +1,30 @@
+<%= render 'layouts/header' %>
+<div class="inner">
+  <h2>注文履歴一覧(全<%= @orders.count %>件)</h2>
+  
+<div>
+  <table class="admin-product-index">
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </tr>
+      <% @orders.each do |order| %>
+      <tr>
+          <td><%= link_to order_params order.created_at.strftime('%U/%m/%d %h:%m:%s') %></td>
+          <td><%= customer.name(order_params) %></td>
+          <td><%= product.count(order_params) %></td>
+          <td><%= order.order_status %>
+          </td>
+            <% if product.sale_status == true %>
+                <td>販売中</td>
+              <% else %>
+                <td>販売停止中</td>
+            <% end %>
+        </tr>
+      <% end %>    
+  </table>
+</div>
+
+</div>
