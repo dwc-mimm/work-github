@@ -6,7 +6,9 @@ class Product < ApplicationRecord
 
   attachment :image
 
-  validates :genre_id, :image, :name, :description, :tax_excluded_price, :sale_status, presence: true
+  validates :genre_id, :image, :name, :description, :tax_excluded_price, presence: true
+  validates :sale_status, inclusion: { in: [true, false] }
+
 
   def tax_include
     tax = 1.10
