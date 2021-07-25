@@ -1,31 +1,37 @@
-<h2>ログイン</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4 text-center mx-auto">
+      <h2 class="banner mx-auto">ログイン</h2>
+      <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+        <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+        <%# <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+        <%# 上記コードは「ログアウトしました」を表示する記述　%>
+        <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+        <div class="contents-box">
+          <div id="text">
+            <h4>会員の方はこちらからログイン</h4>
+          </div>
+          <div class="form-group">
+            <%= f.label :email,"メールアドレス" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "example@example.com" %>
+          </div>
 
-<%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
-  <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-  <%# <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-  <%# 上記コードは「ログアウトしました」を表示する記述　%>
-  <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-  <div class="contents-box">
-    <div id="text">
-      <h4>会員の方はこちらからログイン</h4>
-    </div>
-    <div class="field">
-      <%= f.label :email,"メールアドレス" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password,"パスワード" %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
-  
-    <div class="actions">
-      <%= f.submit "ログイン" %>
+          <div class="form-group">
+            <%= f.label :password,"パスワード" %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "6文字以上" %>
+          </div>
+
+          <div class="actions mb-3">
+            <%= f.submit "ログイン" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class-"no-sign_up mt-3">
+        <h4>会員登録がお済みでない方</h4>
+        <p><%= link_to "こちら",new_customer_registration_path %>から新規登録を行ってください。</p>
+      </div>
+
     </div>
   </div>
-<% end %>
-
-<div class-"no-sign_up">
-  <h4>会員登録がお済みでない方</h4>
-  <p><%= link_to "こちら",new_customer_registration_path %>から新規登録を行ってください。</p>
 </div>

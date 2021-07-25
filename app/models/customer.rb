@@ -13,8 +13,9 @@ class Customer < ApplicationRecord
   #   self.is_deleted == false
   # end
 
-  validates :last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :address, :phone_number, :is_deleted, presence: true
+  validates :last_name, :first_name, :last_name_kana, :first_name_kana, :postcode, :address, :phone_number,  presence: true
+  validates :is_deleted, inclusion: { in: [true, false] }
   # enum is_deleted: { 有効: false, 退会: true }
   #boolean箇所正しい記述か不明です
-  
+
 end
