@@ -16,18 +16,16 @@ class Public::OrdersController < ApplicationController
   @order.address = current_customer.address
   @order.name = current_customer.last_name + current_customer.first_name
 
+  elsif params[:order][:addresses] == "registration_adderss"#登録済み住所
+  @order.postcode = Delivery.find(params[:order][:address_id]).postcode
+  @oreder.address =  Delivery.find(params[:order][:address_id]).address
+  @oreder.name =  Delivery.find(params[:order][:address_id]).name
 
-  elsif params[:order][:addresses] == "registration_address"#登録済み住所
- 
-  @order.postcode = Delivery.find(params[:order][:address2]).postcode
-  @order.address =  Delivery.find(params[:order][:address2]).address
-  @order.name =  Delivery.find(params[:order][:address2]).name
-
-
-  elsif params[:order][:addresses] == "new_address"#新規住所登録
+  elsif params[:order][:addreses] == "new_address"#新規住所登録
    @order.postcode = params[:order][:postcode]
    @order.address = params[:order][:address]
-   @order.name = params[:order][:name]
+   @oreder.name = params[:order][:name]
+
   end
  end
 
@@ -37,11 +35,23 @@ class Public::OrdersController < ApplicationController
  def create
   @order = current_customer.orders.new(order_params)
   @order.save
+  cart_products = current_customer.carts
+  cart_products.each do |cart_product|
+   order_product = OrderProduct.new
+   order_product.product_id = cart_product.product.id
+   order_product.order_id = @order.id
+   order_product.product_quantity = cart_product.product_quantity
+   order_product.tax_included_price = cart_product.product.tax_excluded_price
+   order_product.save
+  end
+  cart_products.destroy_all
+  #注文後のカート内アイテム全削除
   redirect_to complete_path#confirmで注文確定後complete画面へ移動
  end
 
  def index
   @orders = current_customer.orders
+  pp @orders
  end
 
  def show
