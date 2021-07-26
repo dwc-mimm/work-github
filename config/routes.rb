@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :products, except: [:destroy]
     resources :orders, only: [:index, :show, :update]
-    resources :searches, only: [:index, :show, :update]
+    #resources :searches, only: [:index, :show, :update]
   end
 
   devise_for :admins, controllers: {
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   patch '/customers/:id/hide' => 'public/customers#hide', as: 'customers_hide'
 
   get '/search', to: 'searches#search'
+  get '/admin/search', to: 'admin/searches#search', as:'admin_search'
   post 'orders/confirm' => 'public/orders#confirm', as:'confirm'
   post 'orders/complete' => 'public/orders#complete', as:'complete'
 
