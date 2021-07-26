@@ -19,9 +19,9 @@
                     <td><%= @product.genre.name %></td>
                 </tr>
                 <tr>
-                    <th>税込価格</br>(税抜価格)</th>
+                    <th>税込価格(税抜価格)</th>
                     <% price = @product.tax_excluded_price * 1.1 %>
-                    <td><%= number_to_currency(price, unit: "￥",strip_insignificant_zeros: "true") %>(<%= @product.tax_excluded_price %>)円</td>
+                    <td><%= number_to_currency(price, unit: "￥",strip_insignificant_zeros: "true") %>(<%= @product.tax_excluded_price.to_s(:delimited) %>)円</td>
                 </tr>
                 <tr>
                     <th>販売ステータス</th>

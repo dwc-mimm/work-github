@@ -1,51 +1,68 @@
 
-<div class='container'>
- <div class='row'>
-  <div class='col-md-12'>
-   <th><h4><%= @customer.last_name %>
-           <%= @customer.first_name %></h4></th>
-  <div class="d-flex flex-column bd-highlight mb-3">
-   <%= form_with model: @customer, url:admin_customer_path, local:true do |f| %>
-   <div class="field">
-    <tr><%= f.label :会員ID %></tr>
-    <tr><%= f.text_field :id %></tr>
-   </div>
-   <div class="field">
-    <tr><%= f.label :氏名 %></tr>
-    <tr><%= f.text_field :last_name %>
-        <%= f.text_field :first_name %></tr>
-   </div>
-   <div class="field">
-     <tr><%= f.label :フリガナ %></tr>
-     <tr><%= f.text_field :last_name_kana %>
-         <%= f.text_field :first_name_kana %></tr>
-   </div>
-   <div class="field">
-    <tr><%= f.label :郵便番号 %></tr>
-    <tr><%= f.text_field :postcode %></tr>
-   </div>
-   <div class="field">
-     <tr><%= f.label :住所 %></tr>
-     <tr><%= f.text_field :address %></tr>
-   </div>
-   <div class="field">
-    <tr><%= f.label :電話番号 %></tr>
-    <tr><%= f.text_field :phone_number %></tr>
-   </div>
-   <div class="field">
-    <tr><%= f.label :メールアドレス %></tr>
-    <tr><%= f.text_field :email %></tr>
-   </div>
-   <div class="field">
-    <tr><%= f.label :会員ステータス %></tr>
-    <tr> <%= f.select :is_deleted, [['有効', false], ['退会', true]] %></tr>
-   </div>
-   <div class="field">
-    <%= f.submit "変更を保存", class: "btn btn-success" %>
-    <% end %>
-   </div>
-   </div>
+<div class="container-fluid col-lg-10">
+    <div class="row">
+        <div class="col-md-3 mb-3">
+          </br>
+         <h1><span class="badge badge-secondary offset-md-3">会員情報編集</span></h1>
+       </div>
+    </div>
 
-</div>
-</div>
-</div>
+    <table class="table">
+    <%= form_with model:@customer, url:admin_customer_path, local:true do |f| %>
+        <tbody>
+        <tr>
+            <th>氏名</th>
+            <td><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"山田"%></td>
+            <td><%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"花子"%></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+            <th>フリガナ</th>
+            <td><%= f.text_field :last_name_kana, autofocus: true, id:"inputName", placeholder:"ヤマダ"%></td>
+            <td><%= f.text_field :first_name_kana, autofocus: true, id:"inputName", placeholder:"ハナコ"%></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+             <th>郵便番号(ハイフンなし)</th>
+             <td><%= f.text_field :postcode, autofocus: true, id:"inputName", placeholder:"0000000"%></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+             <th>住所</th>
+              <td><%= f.text_field :address, autofocus: true, id:"inputName", placeholder:"東京都渋谷区代々木神園町0-0"%></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+             <th>電話番号(ハイフンなし)</th>
+              <td><%= f.text_field :phone_number, autofocus: true, id:"inputName", placeholder:"00000000000"%></td>
+        </tr>
+        </tbody>
+        <tbody>
+        <tr>
+             <th>メールアドレス</th>
+              <td><%= f.text_field :email, autofocus: true, id:"inputName", placeholder:"hoge@example.com"%></td>
+        </tr>
+        </tbody>
+        <tbody>
+         <tr>
+          <th>会員ステータス</th>
+          <td><%= f.select :is_deleted, [['有効', false], ['退会', true]] %></td>
+         </tr>
+        </tbody>
+
+    </table>
+
+        <div class="row">
+            <div class="col-md-4 offset-md-5">
+                <%= f.submit "編集内容を保存",class:'btn btn-success' %>
+                <% end %>
+            </div>
+        </div>
+
+
+
+ </div>

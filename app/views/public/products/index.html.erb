@@ -1,7 +1,11 @@
 <div class="container-fluid">
   <div class='row'>
-    <div class='mx-auto'>
-      <h2>商品一覧(全<%= @products.count %>件)</h2>
+    <div class="col-2 mt-5">
+      <%= render 'layouts/genre' %>
+    </div>
+
+    <div class='col-8 offset-1'>
+      <h2>商品一覧(全<%= @products_all.count %>件)</h2>
       <table class='table table-hover border-bottom'>
         <thead class='thead-white'>
           <tr>

@@ -1,5 +1,5 @@
 class Public::ProductsController < ApplicationController
- before_action :authenticate_customer!
+
   def top
     @genres = Genre.all
     @products = Product.all.order(created_at: :desc)
@@ -9,10 +9,13 @@ class Public::ProductsController < ApplicationController
   end
 
   def index
+    @genres = Genre.all
     @products = Product.where(sale_status: true).page(params[:page]).per(8)
+    @products_all = Product.all
   end
 
   def show
+    @genres = Genre.all
     @product = Product.find(params[:id])
     @cart = Cart.new
   end
