@@ -1,10 +1,8 @@
-<%# <%= render 'layouts/header' %>
-<%# admin側ヘッダー挿入部分 %>
 <%= stylesheet_link_tag "adnim/products", :media => "all" %>
 
 <div class="inner">
   <table class="admin-product-table">
-    
+
     <h4 class="admin-product-banner">商品新規登録ページ</h4>
     <%= form_with model: @product, url: admin_products_path, local: true do |f| %>
     <tr class="admin-product-label">
@@ -40,7 +38,7 @@
       <td><%= f.submit '新規登録' %></td>
     </tr>
 
-      
+
     <% end %>
   </table>
 </div>
