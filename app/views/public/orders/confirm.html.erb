@@ -1,7 +1,9 @@
 <div class='container'>
+ 
  <h4>注文情報確認</h4>
+
 <div class='row'>
- <div class='col-xs-7'>
+ <div class='col-xs-6'>
   <table align="left" class="table table-bordered">
 <thead>
  <tr>
@@ -17,7 +19,7 @@
  <tr>
   <td><%= cart.product.name %></td>
   <td><%= cart.product.tax_excluded_price %></td>
-  <td><%= cart.product.product_quantity %></td>
+  <td><%= cart.product_quantity %></td>
   <td><%= cart.subtotal %>
       <% sum += cart.subtotal %></td>
  </tr>
@@ -25,21 +27,21 @@
 </tbody>
 </table>
 </div>
+</div>
 
 <div class='row'>
- <div class='col-xs-3'>
-<table class="table table-bordered">
-　<% sum = 0 %>
+ <div class='col-xs-4'>
+<table align="right" class="table table-bordered">
  <tr>
   <th>送料</th>
   <th>800</th>
  </tr>
  <tr>
   <th>商品合計</th>
-  <td><% sum += @carts.subtotal %></td>
+  <td><%= sum.to_s(:delimited) %>円</td>
  </tr>
  <tr>
-  <% total_price = @carts.subtotal + 800 %>
+  <% total_price = sum + 800 %>
   <th>請求金額</th>
   <td><%= total_price %></td>
  </tr>
@@ -47,27 +49,22 @@
 </div>
 </div>
 
+
+<table class="table">
  <tr>
   <th>支払方法</th>
   <td><%= @order.payment_method %></td>
  </tr>
  <tr>
   <th>お届け先</th>
- </tr>
- <tr>
-  <td><%= @order.postcode %></td>
-  <td><%= @order.address %></td>
+  <td><%= @order.postcode %>
+      <%= @order.address %></td>
   <td><%= @order.name %></td>
  </tr>
  </table>
 
-   <%= form_with model: @order, url: complete_path, method: :post, local: true do |f| %>
-   <%= f.hidden_filed :postcode %>
-   <%= f.hidden_filed :address %>
-   <%= f.hidden_filed :name %>
-   <%= f.hidden_filed :payment_method %>
-   <%= f.hidden_filed :total_price %>
+<%= form_with model: @order, url: complete_path, method: :post, local: true do |f| %>
+   
    <th><%= f.submit "注文を確定させる", class: 'btn btn-primary' %></th>
   <% end %>
-</div>
 </div>

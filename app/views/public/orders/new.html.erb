@@ -1,16 +1,16 @@
+<%= render 'layouts/header' %>
 <div class='container'>
  <div class='row'>
   <div class='col-md-20'>
 
     <th><h4>注文情報入力</h4></th>
- <!-- カート内に商品が存在するか-->
-  <%# if current_customer.carts.present? %>
+
 
 <div class="field">
  <tbody>
 
   <div class="col-xs-offset-1">
-  <%= form_with model: @order, url:confirm_path, method: :post, local: true do |f| %>
+  <%= form_with model: @order, url:confirm_path, local: true do |f| %>
    <th><h5>支払方法</h5></th>
   <div class="radio-inline">
    <th>
@@ -52,7 +52,6 @@
   </div>
   <th>
 
-
 　 <tr><%= f.collection_select(:address, @deliveries, :id, :address) %></tr>
 
 　 <label>登録住所一覧</label>
@@ -87,9 +86,7 @@
   <th><%= f.submit "確認画面へ進む" %></th>
  <% end %>
   </div>
-  <%# else %>
-   <th>カート内が空です</th>
-  <%# end %>
+
  </tbody>
 </div>
 </diV>

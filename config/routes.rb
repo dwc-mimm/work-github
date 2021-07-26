@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#search'
   get '/admin/search', to: 'admin/searches#search', as:'admin_search'
   post 'orders/confirm' => 'public/orders#confirm', as:'confirm'
-  get 'orders/complete' => 'public/orders#complete', as:'complete'
+  post 'orders/complete' => 'public/orders#complete', as:'complete'
 
   scope module: :public do
     resources :products, only: [:index, :show]
