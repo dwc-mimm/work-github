@@ -1,7 +1,8 @@
-<div class="inner">
-  <h2>商品一覧(全<%= @products.count %>件)</h2>
-  <div>
-    <table class="admin-product-index">
+<div class="container-fluid">
+  <div class="row">
+    <div class="mx-auto col-6 text-center">
+      <h2>商品一覧(全<%= @products.count %>件)</h2>
+      <table class="table table-striped">
       <tr>
         <th>商品ID</th>
         <th>商品名</th>
@@ -11,7 +12,7 @@
       </tr>
         <% @products.each do |product| %>
         <tr>
-            <td></td>
+            <td><%= product.id %></td>
             <td>
                <%= link_to edit_admin_product_path(product.id) do %>
                 <%= product.name %>
@@ -28,6 +29,10 @@
               <% end %>
           </tr>
         <% end %>
-    </table>
+      </table>
+      <div class="text-right">
+        <%= link_to "新規商品登録", new_admin_product_path, class:"btn btn-success" %>
+      </div>
+    </div>
   </div>
 </div>
