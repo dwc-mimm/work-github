@@ -35,15 +35,27 @@ class Public::OrdersController < ApplicationController
  def create
   @order = current_customer.orders.new(order_params)
   @order.save
+  cart_products = current_customer.carts
+  cart_products.each do |cart_product|
+   order_product = OrderProduct.new
+   order_product.product_id = cart_product.product.id
+   order_product.order_id = @order.id
+   order_product.product_quantity = cart_product.product_quantity
+   order_product.tax_included_price = cart_product.product.tax_excluded_price
+   order_product.save
+  end
+  cart_products.destroy_all
+  #注文後のカート内アイテム全削除
   redirect_to complete_path#confirmで注文確定後complete画面へ移動
  end
 
  def index
   @orders = current_customer.orders
+  pp @orders
  end
 
  def show
-  @orders = Order.find(params[:id])
+  @order = Order.find(params[:id])
   @carts = Cart.where(customer_id: current_customer)
  end
 

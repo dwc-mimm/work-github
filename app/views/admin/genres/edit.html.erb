@@ -1,6 +1,6 @@
 <div class="container text-center center-block">
-  <div class="row">
-    <div class="col-12">
+  <div class="row offset-4">
+    <div class="mx-auto">
       <h2>ジャンル編集</h2>
       <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch, local: true do |f| %>
         <%= f.label :name, "ジャンル名" %>

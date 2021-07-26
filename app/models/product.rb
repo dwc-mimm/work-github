@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   has_many :carts, dependent: :destroy
   has_many :order_products
   belongs_to :genre,optional: true
+  has_many :orders,through: :order_products
 
   attachment :image
 
