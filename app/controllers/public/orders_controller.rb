@@ -42,6 +42,7 @@ class Public::OrdersController < ApplicationController
 
  def index
   @orders = current_customer.orders
+  @carts = Cart.where(customer_id: current_customer)
  end
 
  def show

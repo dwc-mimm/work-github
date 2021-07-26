@@ -24,9 +24,9 @@
      <td><%= order.address %></td>
      <td><%= order.name %></td>
     </tr>
-     <% order.order_products.each do |order_product| %>
+    <% @carts.each do |cart| %>
     <tr>
-     <%= order_product.product.name %>
+     <td><%= cart.product.name %></td>
     </tr>
     <% end %>
     <tr>
