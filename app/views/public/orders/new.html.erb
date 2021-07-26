@@ -13,14 +13,14 @@
    </div>
    <div class="row">
      <div class="custom-control1 custom-radio ml-5">
-       <tr><%= f.radio_button :payment_method, 0, checked: "checked" %></tr>
+       <tr><%= f.radio_button :payment_method, "クレジットカード", checked: "checked" %></tr>
       <label>クレジットカード</label>
      </div>
    </div>
    
    <div class="row">
     <div class="custom-control1 custom-radio ml-5">
-       <tr><%= f.radio_button :payment_method, 1 %></tr>
+       <tr><%= f.radio_button :payment_method, "銀行振込" %></tr>
       <label>銀行振込</label>
      </div>
    </div>
@@ -47,13 +47,13 @@
    
    <div class="row ml">
      <div class="custom-control1 custom-radio ml-5">
-       <tr><%= f.radio_button :addresses, "registration_adderss" %></tr>
+       <tr><%= f.radio_button :addresses, "registration_address" %></tr>
       <label>登録済住所から選択</label>
      </div>
    </div>
    
    <div class="row ml-5">
-    <%= f.collection_select(:address, @deliveries, :id, :address) %>
+    <%= f.collection_select(:address2, @deliveries, :id, :address) %>
    </div>
    
    <div class="row ml mt-2">
