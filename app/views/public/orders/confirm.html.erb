@@ -1,70 +1,78 @@
-<div class='container takasa'>
+<div class='container-fluid'>
  <div class='row'>
- <table class="head">
- <h4>注文情報確認</h4>
-</table>
-<div class='row'>
- <div class='col-xs-6'>
-  <table align="left" class="table table-bordered">
-<thead>
- <tr>
-  <th>商品名</th>
-  <th>単価</th>
-  <th>数量</th>
-  <th>小計</th>
- </tr>
-</thead>
-<tbody>
-  <% sum = 0 %>
-  <% @carts.each do |cart| %>
- <tr>
-  <td><%= cart.product.name %></td>
-  <td><%= cart.product.tax_excluded_price %></td>
-  <td><%= cart.product_quantity %></td>
-  <td><%= cart.subtotal %>
-      <% sum += cart.subtotal %></td>
- </tr>
-  <% end %>
-</tbody>
-</table>
-</div>
-</div>
-
-<div class='row'>
- <div class='col-xs-4'>
-<table class="table table-bordered">
- <tr>
-  <th>送料</th>
-  <th>800</th>
- </tr>
- <tr>
-  <th>商品合計</th>
-  <td><%= sum.to_s(:delimited) %>円</td>
- </tr>
- <tr>
-  <% total_price = sum + 800 %>
-  <th>請求金額</th>
-  <td><%= total_price %></td>
- </tr>
-</table>
-</div>
+  <div class="col-5 offset-md-2 mb-3">
+   <h4>注文情報確認</h4>
+  </div>
+ </div>
+ <div class='row'>
+  <div class='col-5 text-center offset-md-2'>
+   <table class="table table-bordered">
+    <thead>
+     <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+     </tr>
+    </thead>
+    <tbody>
+      <% sum = 0 %>
+      <% @carts.each do |cart| %>
+     <tr>
+      <td><%= cart.product.name %></td>
+      <td><%= (cart.product.tax_excluded_price.to_i. * 1.1).round.to_s(:delimited) %>円</td>
+      <td><%= cart.product_quantity %>個</td>
+      <td><%= cart.subtotal.to_s(:delimited) %>円
+          <% sum += cart.subtotal %></td>
+     </tr>
+      <% end %>
+    </tbody>
+   </table>
+  </div>
+ <div class='col-3 text-center'>
+  <table class="table table-bordered">
+   <tr>
+    <th>送料</th>
+    <th>800円</th>
+   </tr>
+   <tr>
+    <th>商品合計</th>
+    <td><%= sum.to_s(:delimited) %>円</td>
+   </tr>
+   <tr>
+    <% total_price = sum + 800 %>
+    <th>請求金額</th>
+    <td><%= total_price.to_s(:delimited) %>円</td>
+   </tr>
+  </table>
+ </div>
 </div>
 
+ <div class="row">
+  <div class="col-5 offset-md-2">
+   <table class="table table-striped">
+    <tr>
+     <th>支払方法</th>
+     <td><%= @order.payment_method %></td>
+     <td></td>
+    </tr>
+    <tr>
+     <th>お届け先</th>
+     <td><%= @order.postcode %>
+         <%= @order.address %></td>
+    </tr>
+    <tr>
+     <th>
+     <td><%= @order.name %>様</td>
+     </th>
+    </tr>
+   </table>
+  </div>
+ </div>
 
-<table class="table">
- <tr>
-  <th>支払方法</th>
-  <td><%= @order.payment_method %></td>
- </tr>
- <tr>
-  <th>お届け先</th>
-  <td><%= @order.postcode %>
-      <%= @order.address %></td>
-  <td><%= @order.name %></td>
- </tr>
- </table>
-
-<%= form_with model: @order, url: complete_path, method: :post, local: true do |f| %>
+ <div class"row">
+  <div class="text-center mx-auto">
+   <%= form_with model: @order, url: complete_path, method: :post, local: true do |f| %>
    <!--%= f.hidden_filed :postcode %>
    <!--%= f.hidden_filed :address %>
    <!-%= f.hidden_filed :name %>
@@ -72,7 +80,6 @@
    <!-%= f.hidden_filed :total_price %-->
    <th><%= f.submit "注文を確定させる", class: 'btn btn-primary' %></th>
   <% end %>
-
-
-</div>
+  </div>
+ </div>
 </div>
