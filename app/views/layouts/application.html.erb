@@ -9,8 +9,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-    <%= yield %>
+    <div class="fixed-top mb-5">
+      <%= render 'layouts/header' %>
+    </div>
+    <div style="margin-top:150px;">
+      <%= yield %>
     <%= render 'layouts/footer' %>
+    </div>
+
   </body>
 </html>

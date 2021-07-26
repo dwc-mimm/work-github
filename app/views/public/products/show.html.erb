@@ -1,7 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="mx-auto text-center">
-      <%= attachment_image_tag(@product, :image, size: "340x220", fallback: "no_image.jpg" ) %>
+    <div class="col-2 mt-5">
+      <%= render 'layouts/genre' %>
+    </div>
+    <div class="col-8 text-center">
+      <%= attachment_image_tag(@product, :image, width: '50%', height: "auto", fallback: "no_image.jpg" ) %>
       <div class="col-xs-6 product-show">
       <div class="product-description">
         <div class="field product-name">
