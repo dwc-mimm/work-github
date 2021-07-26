@@ -1,9 +1,7 @@
-<%# <%= render 'layouts/header' %>
-
 <div class="inner">
     <h4 class="banner">商品編集</h4>
-    <%= form_with model: @product, url: admin_product_path, local: true do |f| %>
-    
+    <%= form_with model: @product, url: admin_product_path(@product.id), local: true do |f| %>
+
     <table class="table">
           <tr class="label">
               <th>商品画像</th>
@@ -23,10 +21,9 @@
           <tr class="label">
               <th>ジャンル</th>
               <td>
-                  <label class="radio_button"><%= f.radio_button :genre_id, 1 %> ケーキ</label>
-                  <label class="radio_button"><%= f.radio_button :genre_id, 2 %> 焼き菓子</label>
-                  <label class="radio_button"><%= f.radio_button :genre_id, 3 %> プリン</label>
-                  <label class="radio_button"><%= f.radio_button :genre_id, 4 %> キャンディ</label>
+                  <label class="radio_button">
+                    <%= f.collection_select(:genre_id, @genres, :id, :name) %>
+                  </label>
               </td>
           </tr>
           <tr class="label">
@@ -36,13 +33,11 @@
           <tr class="label">
               <th>販売ステータス</th>
               <td>
-                <label class="radio_button"><%= f.radio_button :sale_status, true %> 販売中</label>
-                <label class="radio_button"><%= f.radio_button :sale_status, false %> 販売停止中</label>
+                <%= f.select :sale_status, [['販売中', true], ['販売停止', false]] %>
               </td>
           </tr>
-          
+
     </table>
         <%= f.submit "編集内容を保存",class:'button' %>
      <% end %>
  </div>
- 
