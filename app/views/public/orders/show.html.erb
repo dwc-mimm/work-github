@@ -40,16 +40,16 @@
 <table align="right" class="table table-bordered">
    <tr>
     <th>商品合計</th>
-    <td><%= sum.to_s(:delimited) %>円</td>
+    <td><%= @order.payment %>円</td>
    </tr>
    <tr>
     <th>配送料</th>
     <td>800</td>
    </tr>
   <tr>
-   <% total_price = sum + 800 %>
+   <% total_payment = @order.payment + 800 %>
    <th>ご請求額</th>
-   <td><%= total_price %></td>
+   <td><%= total_payment %></td>
   </tr>
  </table>
 </div>

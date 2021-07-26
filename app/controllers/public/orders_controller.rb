@@ -16,16 +16,18 @@ class Public::OrdersController < ApplicationController
   @order.address = current_customer.address
   @order.name = current_customer.last_name + current_customer.first_name
 
-  elsif params[:order][:addresses] == "registration_adderss"#登録済み住所
-  @order.postcode = Delivery.find(params[:order][:address_id]).postcode
-  @oreder.address =  Delivery.find(params[:order][:address_id]).address
-  @oreder.name =  Delivery.find(params[:order][:address_id]).name
 
-  elsif params[:order][:addreses] == "new_address"#新規住所登録
+  elsif params[:order][:addresses] == "registration_address"#登録済み住所
+ 
+  @order.postcode = Delivery.find(params[:order][:address2]).postcode
+  @order.address =  Delivery.find(params[:order][:address2]).address
+  @order.name =  Delivery.find(params[:order][:address2]).name
+
+
+  elsif params[:order][:addresses] == "new_address"#新規住所登録
    @order.postcode = params[:order][:postcode]
    @order.address = params[:order][:address]
-   @oreder.name = params[:order][:name]
-
+   @order.name = params[:order][:name]
   end
  end
 
@@ -43,7 +45,7 @@ class Public::OrdersController < ApplicationController
  end
 
  def show
-  @orders = Order.find(params[:id])
+  @order = Order.find(params[:id])
   @carts = Cart.where(customer_id: current_customer)
  end
 
