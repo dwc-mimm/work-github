@@ -1,5 +1,5 @@
 class Public::ProductsController < ApplicationController
-
+ before_action :authenticate_customer!
   def top
     @genres = Genre.all
     @products = Product.all.order(created_at: :desc)
