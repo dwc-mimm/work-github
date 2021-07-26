@@ -16,15 +16,11 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-<<<<<<< HEAD
-  devise_for :customers
-=======
   devise_for :customers, controllers: {
     sessions: 'public/customers/sessions',
     passwords: 'public/customers/passwords',
     registrations: 'public/customers/registrations'
   }
->>>>>>> 8ac04abc47abe171bf776230d55dae6a86ec50aa
 
   root to: 'public/products#top'
   get '/about' => 'public/products#about', as: 'about'
