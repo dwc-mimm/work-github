@@ -5,7 +5,7 @@
    <th><h4><%= @customer.last_name %>
            <%= @customer.first_name %></h4></th>
   <div class="d-flex flex-column bd-highlight mb-3">
-   <%= form_with model: @customer, url:customer_path, local:true do |f| %>
+   <%= form_with model: @customer, url:admin_customer_path, local:true do |f| %>
    <div class="field">
     <tr><%= f.label :会員ID %></tr>
     <tr><%= f.text_field :id %></tr>
@@ -38,8 +38,7 @@
    </div>
    <div class="field">
     <tr><%= f.label :会員ステータス %></tr>
-    <tr><label><%= f.radio_button :is_deleted, :"有効", checked: "checked" %>有効</label>
-        <label></label><%= f.radio_button :is_deleted, :"退会" %></tr>退会</label>
+    <tr> <%= f.select :is_deleted, [['有効', false], ['退会', true]] %></tr>
    </div>
    <div class="field">
     <%= f.submit "変更を保存", class: "btn btn-success" %>
