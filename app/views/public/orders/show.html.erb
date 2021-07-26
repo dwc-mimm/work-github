@@ -1,69 +1,38 @@
+<%= render 'layouts/header' %>
 <div class='container'>
-  <div class='row'>
-    <div class='col-md-8'>
-<div class="field">
- <h4>注文履歴詳細</h4>
- <table class='left'>
-    <th>注文情報</th>
-  <tr class='left-header'>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>支払方法</th>
-      <th>ステータス</th>
-  </tr>
-  <tr class='left-body'>
-     <tr>
-      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-     </tr>
-     <tr>
-      <td><%= @order.postcode %></td>
-      <td><%= @order.address %></td>
-      <td><%= @order.name %></td>
-     </tr>
-     <tr>
-      <td><%= @order.payment_method %></td>
-     </tr>
-     <tr>
-      <td><%= @order.order_status %></td>
-     </tr>
-  </tr>
-    
-  <th>注文内容</th>
-    <tr class='order-contents'>
-        <th>商品</th>
-        <th>単価（税込）</th>
-        <th>個数</th>
-        <th>小計</th>
-    </tr>
-    <tr>
-     <td><!-- 注文商品(表示方法不明 order_productと紐づけ？)--></td>
-    </tr>
-    <tr>
-     <td><!-- 単価(表示方法不明 order_productと紐づけ？)--></td>
-    </tr>
-    <tr>
-     <td><!-- 商品個数(表示方法不明 order_productと紐づけ？)--></td>
-    </tr>
-    <tr>
-     <td><%= total_price(@carts) %></td>
-    </tr>
- </table>
- 
- <table class='right'>
-     <th>請求情報</th>
-    <tr class='right-header'>
-        <th>商品合計</th>
-        <th>配送料</th>
-        <th>ご請求額</th>
-    </tr>
-    <tr class='right-body'>
-    <!-- 現状@order_productはpublic側に無し、テーブルを作成するかorderカラムを追加する必要あり -->
-     <td><%= @order.payment %></td>
-     <td><%= @order.postage %></td>
-     <td><!--%= @order_product.tax_included_price %--></td>
- </table>
- </div>
- </div>
- </div>
- </div>
- 
+ <div class='row'>
+  <div class='col-md-20'>
+<h4>注文履歴詳細</h4>
+<table align="left" class="table table-bordered">
+<tr>
+ <th>注文情報</th>
+</tr>
+<thead>
+ <th>注文日</th>
+ <th>配送先</th>
+ <th>支払方法</th>
+ <th>ステータス</th>
+</thead>
+<tbody>
+ <th>
+  <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+ </th>
+ <th>
+  <td><%= @order.postcode %></td>
+  <td><%= @order.address %></td>
+  <td><%= @order.name %></td>
+ </th>
+ <th>
+  <td><%= @order.payment %></td>
+ </th>
+ <th>
+  <td><%= @order.order_status %></td>
+ </th>
+</tbody>
+</table>
+
+      
+      
+</div>
+</div>
+</div>

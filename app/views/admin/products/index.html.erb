@@ -1,46 +1,33 @@
-
 <div class="inner">
   <h2>商品一覧(全<%= @products.count %>件)</h2>
-  
-<div>
-  <table class="admin-product-index">
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-      <% @products.each do |product| %>
+  <div>
+    <table class="admin-product-index">
       <tr>
-          <td></td>
-          <td>
-             <%= link_to edit_admin_product_path(product.id) do %>
-              <%= product.name %>
-            <% end %>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+        <% @products.each do |product| %>
+        <tr>
+            <td></td>
+            <td>
+               <%= link_to edit_admin_product_path(product.id) do %>
+                <%= product.name %>
+              <% end %>
+              </td>
+            <td><%= product.tax_excluded_price %></td>
+            <td>
+              <%= product.genre.name %>
             </td>
-          <td><%= product.tax_excluded_price %></td>
-          <td>
-            <% if product.genre_id == 1 %>
-                <td>ケーキ</td>
-              <% elsif product.genre_id == 2 %>
-                <td>プリン</td>
-              <% elsif product.genre_id == 3 %>
-                <td>焼き菓子</td>
-              <% elsif product.genre_id == 4 %>
-                <td>キャンディ</td>
-              <% else %>
-                <td></td>
-            <% end %>
-          </td>
-            <% if product.sale_status == true %>
-                <td>販売中</td>
-              <% else %>
-                <td>販売停止中</td>
-            <% end %>
-        </tr>
-      <% end %>    
-  </table>
-</div>
-
+              <% if product.sale_status == true %>
+                  <td>販売中</td>
+                <% else %>
+                  <td>販売停止中</td>
+              <% end %>
+          </tr>
+        <% end %>
+    </table>
+  </div>
 </div>
