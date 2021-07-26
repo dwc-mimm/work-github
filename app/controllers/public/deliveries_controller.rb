@@ -1,13 +1,15 @@
 class Public::DeliveriesController < ApplicationController
  #before_action :authenticate_customer!
  #ログイン機能実装後
- 
+
 def index
+    @customer = current_customer
     @delivery = Delivery.new
-    @deliveries = Delivery.all
+    @deliveries = @customer.deliveries
 end
 
 def create
+    @customer = current_customer
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
     @delivery.save
