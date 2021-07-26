@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
   @order.name = current_customer.last_name + current_customer.first_name
 
   elsif params[:order][:addresses] == "registration_adderss"#登録済み住所
-  @oreder.postcode = Delivery.find(params[:order][:address_id]).postcode
+  @order.postcode = Delivery.find(params[:order][:address_id]).postcode
   @oreder.address =  Delivery.find(params[:order][:address_id]).address
   @oreder.name =  Delivery.find(params[:order][:address_id]).name
 
