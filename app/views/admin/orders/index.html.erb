@@ -1,3 +1,4 @@
+
 <div class="inner">
   <h2>注文履歴一覧(全<%= @orders.count %>件)</h2>
   <table class='table table-hover border-bottom'>
@@ -13,9 +14,12 @@
         <tbody>
         <% @orders.each do |order| %>
             <tr class='text-center'>
-              <td><%= order.created_at.strftime('%U/%m/%d %h:%m:%s') %></td>
-              <td><%= order.customer.name %><;/td>
-              <td><%= order.product.count %></td>
+              <td><%= link_to order.created_at.strftime('%y/%m/%d %H:%M:%S') %></td>
+              <td><%= order.name %></td>
+              <td><% order.order_products.each do |order_product| %>
+                <p><%= order_product.product_quantity %></p>
+                  <% end %>
+              </td>
               <td><%= order.order_status %></td>
               
             </tr>
@@ -25,8 +29,3 @@
     </div>
   </div>
 </div>
-
-<!--< %= paginate @order %>-->
-<%= render 'layouts/footer' %>
-
-
