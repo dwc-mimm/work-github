@@ -10,18 +10,18 @@
             <th class='text-center'>注文ステータス</th>
           </tr>
         </thead>
-        
+
         <tbody>
         <% @orders.each do |order| %>
             <tr class='text-center'>
               <td><%= link_to order.created_at.strftime('%y/%m/%d %H:%M:%S') %></td>
-              <td><%= order.name %></td>
+              <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
               <td><% order.order_products.each do |order_product| %>
                 <p><%= order_product.product_quantity %></p>
                   <% end %>
               </td>
               <td><%= order.order_status %></td>
-              
+
             </tr>
           </tbody>
         <% end %>
