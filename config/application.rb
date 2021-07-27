@@ -12,4 +12,13 @@ module WorkGithub
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
+
+module TimeFormatSandbox
+  class Application < Rails::Application
+    # ...
+
+    # タイムゾーンを日本時間に設定
+    config.time_zone = 'Asia/Tokyo'
+  end
+end
 end
