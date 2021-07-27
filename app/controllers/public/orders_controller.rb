@@ -44,6 +44,15 @@ class Public::OrdersController < ApplicationController
    order_product.tax_included_price = cart_product.product.tax_excluded_price
    order_product.save
   end
+  
+   if params[:order][:address_method] == "new_address"
+   @delivery = current_customer.deliveries.new
+   @delivery.postcode = @order.postcode
+   @delivery.address = @order.address
+   @delivery.name = @order.name
+   @delivery.save
+   end
+   
   cart_products.destroy_all
   #注文後のカート内アイテム全削除
   redirect_to complete_path#confirmで注文確定後complete画面へ移動
