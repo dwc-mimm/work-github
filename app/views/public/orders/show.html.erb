@@ -91,10 +91,14 @@
   </thead>
   <tbody>
     <tr>
-      <td>いちごのショートケーキ</td>
-      <td>500</td>
-      <td>2</td>
-      <td>1000</td>
+     <% sum = 0 %>
+       <% @order.order_products.each do |order_product| %>
+         <td><%= order_product.product.name %></td>
+      <td><%= (order_product.product.tax_excluded_price.to_i. * 1.1).round.to_s(:delimited) %>円</td>
+      <td><%= order_product.product_quantity %>個</td>
+     <td><%= order_product.subtotal.to_s(:delimited) %>円
+          <% sum += order_product.subtotal %></td>
+    <% end %>
     </tr>
   </tbody>
 </table>
