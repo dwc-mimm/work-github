@@ -13,14 +13,22 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-
+    @order = Order.find(params[:id])
+    @order_products = OrderProduct.where(order_id: @order.id)
   end
 
-  def updated
+  def update
+    @order = Order.find(params[:id])
+    @order.update(order_params)
+    if @order.order_status == "入金確認"
+       @order_products = @order.order_products
+       @order_products.update(production_status: "製作待ち")
+    end
+    redirect_to admin_order_path(@order)
   end
 
   private
   def order_params
-    params.require(:orders).permit(:order_status)
+    params.require(:order).permit(:order_status)
   end
 end

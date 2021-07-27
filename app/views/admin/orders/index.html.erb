@@ -14,7 +14,7 @@
         <tbody>
         <% @orders.each do |order| %>
             <tr class='text-center'>
-              <td><%= link_to order.created_at.strftime('%y/%m/%d %H:%M:%S') %></td>
+              <td><%= link_to order.created_at.strftime('%y/%m/%d %H:%M:%S'), admin_order_path(order.id) %></td>
               <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
               <td><% order.order_products.each do |order_product| %>
                 <p><%= order_product.product_quantity %></p>
