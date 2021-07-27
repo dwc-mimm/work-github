@@ -9,14 +9,13 @@
             <th class='text-center'>注文ステータス</th>
           </tr>
         </thead>
+        
+        <tbody>
         <% @orders.each do |order| %>
-          <tbody>
-            <tr>
-              <td class='text-center'>
-                <%= link_to order_params order.created_at.strftime('%U/%m/%d %h:%m:%s') %>
-              </td>
-              <td><%= customer.name(order_params) %></td>
-              <td><%= product.count(order_params) %></td>
+            <tr class='text-center'>
+              <td><%= order.created_at.strftime('%U/%m/%d %h:%m:%s') %></td>
+              <td><%= order.customer.name %><;/td>
+              <td><%= order.product.count %></td>
               <td><%= order.order_status %></td>
               
             </tr>
