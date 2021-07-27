@@ -25,6 +25,7 @@ class Admin::OrdersController < ApplicationController
        @order_products.update(production_status: "製作待ち")
     end
     redirect_to admin_order_path(@order)
+
   end
 
   private

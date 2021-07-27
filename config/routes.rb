@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :products, except: [:destroy]
     resources :orders, only: [:index, :show, :update]
     #resources :searches, only: [:index, :show, :update]
+  
   end
 
   devise_for :admins, controllers: {
