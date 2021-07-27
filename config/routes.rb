@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :products, except: [:destroy]
     resources :orders, only: [:index, :show, :update]
+   
     #resources :searches, only: [:index, :show, :update]
   end
 
