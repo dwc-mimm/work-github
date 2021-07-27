@@ -4,15 +4,16 @@ class Admin::OrdersController < ApplicationController
   def index
     case params[:order_sort]
     when "0"
-      @customer = Customer.find(params[:customer_id])
+      customer_id = Rails.application.routes.recognize_path(request.referer)[:id]
+      @customer = Customer.find(customer_id)
       @orders = @customer.orders
-    else 
+    else
       @orders = Order.all
     end
   end
 
   def show
-    
+
   end
 
   def updated
