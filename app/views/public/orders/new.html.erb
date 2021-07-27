@@ -6,63 +6,55 @@
     <h1><span class="badge badge-secondary badge-info">注文情報入力</span></h1>
   </div>
  </div>
- 
+
  <%= form_with model: @order, url:confirm_path, local: true do |f| %>
    <div class="row">
      <h5 class="font-weight-bold">支払方法</h5>
    </div>
    <div class="row">
      <div class="custom-control1 custom-radio ml-5">
-       <tr><%= f.radio_button :payment_method, "クレジットカード", checked: "checked" %></tr>
-      <label>クレジットカード</label>
+       <tr><%= f.select :payment_method,[["クレジットカード","0"],["銀行振込","1"]] %></tr>
      </div>
    </div>
-   
-   <div class="row">
-    <div class="custom-control1 custom-radio ml-5">
-       <tr><%= f.radio_button :payment_method, "銀行振込" %></tr>
-      <label>銀行振込</label>
-     </div>
-   </div>
-   
+
    <div class="row">
     <h5 class="font-weight-bold">お届け先</h5>
    </div>
-   
+
    <div class="row">
     <div class="custom-control1 custom-radio ml-5">
        <tr><%= f.radio_button :addresses, "address", checked: "checked" %></tr>
       <label>ご自身の住所</label>
      </div>
    </div>
-   
+
    <div class="row ml-5 pb-0">
      <p>〒<%= current_customer.postcode %></p>
      <p><%= current_customer.address %></p>
    </div>
-   
+
    <div class="row ml-5">
     <p><%= current_customer.last_name %><%= current_customer.first_name %></p>
    </div>
-   
+
    <div class="row ml">
      <div class="custom-control1 custom-radio ml-5">
        <tr><%= f.radio_button :addresses, "registration_address" %></tr>
       <label>登録済住所から選択</label>
      </div>
    </div>
-   
+
    <div class="row ml-5">
     <%= f.collection_select(:address2, @deliveries, :id, :address) %>
    </div>
-   
+
    <div class="row ml mt-2">
     <div class="custom-control1 custom-radio ml-5">
        <tr><%= f.radio_button :addresses, "new_address" %></tr>
       <label>新しいお届け先</label>
      </div>
    </div>
-   
+
    <div class="row ml-5">
     <div class="col-md-3">
      <tr><%= f.label :postcode, "郵便番号（ハイフンなし)" %></tr>
@@ -71,7 +63,7 @@
      <%= f.text_field :postcode,class:"form-control" %>
     </div>
    </div>
-   
+
    <div class="row ml-5">
     <div class="col-md-3">
      <tr><%= f.label :address, "住所" %></tr>
@@ -80,7 +72,7 @@
      <%= f.text_field :address,class:"form-control"%>
     </div>
    </div>
-    
+
     <div class="row ml-5">
      <div class="col-md-3">
       <tr><%= f.label :name, "宛名" %></tr>
@@ -89,14 +81,14 @@
       <%= f.text_field :name,class:"form-control" %>
      </div>
     </div>
-    
+
     <div class="row">
      <div class="col-md-4 offset-md-5">
       <%= f.submit "確認画面へ進む",class:"btn btn-success" %>
      </div>
     </div>
-    
-  
-     
+
+
+
      <% end %>
 </div>
